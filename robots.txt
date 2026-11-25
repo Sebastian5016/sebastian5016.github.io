@@ -3,4 +3,4 @@ Allow: /
 Disallow: /src/
 Disallow: /scripts/
 
-Sitemap: https://sebastian5016.github.io/1ELPAISA/sitemap.xml
+Sitemap: https://sebastian5016.github.io/sitemap.xml

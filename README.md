@@ -24,7 +24,7 @@ Búsqueda global con `Ctrl + K` o `/` en todas las páginas.
 ## Publicar en GitHub Pages
 
 1. *Settings → Pages → Deploy from a branch* → rama principal, carpeta `/ (root)`.
-2. Editar `url` en `data/sitio.js` con la dirección final y ejecutar `node scripts/build.mjs`.
+2. El repositorio se llama `sebastian5016.github.io`, así que el sitio queda en https://sebastian5016.github.io/ (si cambia la dirección, editar `url` en `data/sitio.js` y ejecutar `node scripts/build.mjs`).
 
 ## Antes de publicar — completar ✏️
 

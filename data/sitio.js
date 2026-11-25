@@ -14,7 +14,7 @@ WF.sitio = {
   roles: ["Profesor de Informática", "Tecnología", "Programación", "Educación Digital"],
   lema: "Aprender tecnología haciendo.",
   // ✏️ COMPLETAR: URL definitiva del sitio (se usa para compartir y SEO)
-  url: "https://sebastian5016.github.io/1ELPAISA/",
+  url: "https://sebastian5016.github.io/",
   actualizado: "2026-11-25",
 
   presentacion:
@@ -41,7 +41,7 @@ WF.sitio = {
   // --- Integraciones --------------------------------------------------------
   // Pegar el ID / URL cuando se active cada servicio.
   integraciones: {
-    github: { activo: true, usuario: "sebastian5016", repoSitio: "https://github.com/sebastian5016/1ELPAISA" },
+    github: { activo: true, usuario: "sebastian5016", repoSitio: "https://github.com/sebastian5016/sebastian5016.github.io" },
     youtube: { activo: false, canal: "" },
     drive: { activo: false, carpetaPublica: "" },
     forms: { activo: false, autoevaluaciones: "" },
