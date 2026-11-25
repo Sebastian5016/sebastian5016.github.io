@@ -1,0 +1,40 @@
+<!--meta {"titulo":"Introducción a la programación con Python","area":"Programación","nivel":"Inicial","lectura":"15 min","fecha":"2026-11","descripcion":"Qué es un programa, algoritmos, variables, condicionales y bucles con ejemplos en Python."} -->
+<div class="objetivos"><strong>Al terminar vas a poder:</strong>
+<ul><li>Explicar qué es un algoritmo y qué es un programa.</li><li>Usar variables, entrada y salida de datos.</li><li>Tomar decisiones con <code>if</code> y repetir con <code>for</code> y <code>while</code>.</li></ul></div>
+
+<h2>1. ¿Qué es programar?</h2>
+<p>Programar es escribir instrucciones precisas para que una computadora resuelva un problema. Antes de escribir código pensamos un <strong>algoritmo</strong>: una secuencia ordenada y finita de pasos.</p>
+<div class="box"><strong>Ejemplo de algoritmo:</strong> preparar un mate. 1) Llenar el mate con yerba. 2) Inclinarlo. 3) Calentar agua sin que hierva. 4) Cebar. 5) Repetir el paso 4 mientras haya ganas.</div>
+
+<h2>2. Variables</h2>
+<p>Una variable es una “caja” con nombre donde guardamos un dato. En Python no hace falta declarar el tipo.</p>
+<pre>nombre = "Lucía"   # texto (str)
+edad = 15          # entero (int)
+altura = 1.62      # decimal (float)
+estudia = True     # lógico (bool)</pre>
+
+<h2>3. Entrada y salida</h2>
+<pre>nombre = input("¿Cómo te llamás? ")
+print("Hola,", nombre)
+edad = int(input("¿Edad? "))   # input devuelve texto: lo convertimos a número</pre>
+
+<h2>4. Condicionales</h2>
+<p>Permiten que el programa tome decisiones.</p>
+<pre>if edad >= 18:
+    print("Mayor de edad")
+else:
+    print("Menor de edad")</pre>
+<p>Operadores de comparación: <code>==</code> igual, <code>!=</code> distinto, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>. Operadores lógicos: <code>and</code>, <code>or</code>, <code>not</code>.</p>
+
+<h2>5. Bucles</h2>
+<table><tr><th>Bucle</th><th>Cuándo usarlo</th><th>Ejemplo</th></tr>
+<tr><td><code>for</code></td><td>Sabemos cuántas veces repetir.</td><td><code>for i in range(5):</code></td></tr>
+<tr><td><code>while</code></td><td>Repetimos mientras se cumpla una condición.</td><td><code>while clave != "1234":</code></td></tr></table>
+
+<h2>6. Errores frecuentes</h2>
+<ul><li><strong>IndentationError:</strong> en Python la sangría (espacios al inicio) es obligatoria dentro de un bloque.</li>
+<li><strong>TypeError al sumar:</strong> <code>"5" + 3</code> falla porque se mezcla texto con número.</li>
+<li><strong>Olvidar los dos puntos</strong> al final de <code>if</code>, <code>for</code>, <code>while</code> y <code>def</code>.</li></ul>
+
+<div class="act"><h2>Actividad</h2>
+<p>Escribí un programa que pida tres notas, calcule el promedio e informe “Aprobado” si es 6 o más. <strong>Desafío:</strong> que no acepte notas fuera del rango 1–10.</p></div>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" font-family="IBM Plex Mono,Menlo,Consolas,monospace" font-size="13">
+<rect width="640" height="400" fill="#f6f5f1"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#454a52"/></marker></defs>
+<g stroke="#454a52" stroke-width="1.6" fill="none" marker-end="url(#a)">
+<path d="M90 70V100"/><path d="M90 150V180"/><path d="M150 215H215"/><path d="M335 215H385"/><path d="M465 215H500"/><path d="M560 240V300H300V250"/><path d="M90 250V300"/>
+</g>
+<g stroke="#15171a" stroke-width="1.6">
+<rect x="40" y="30" width="100" height="40" rx="20" fill="#fff"/>
+<rect x="30" y="100" width="120" height="50" fill="#fff"/>
+<path d="M90 180L150 215L90 250L30 215Z" fill="#e1efea"/>
+<path d="M230 190H340L325 240H215Z" fill="#fff"/>
+<rect x="385" y="190" width="80" height="50" fill="#fff"/>
+<path d="M515 190H615L600 240H500Z" fill="#fff"/>
+<rect x="40" y="300" width="100" height="40" rx="20" fill="#fff"/>
+</g>
+<g fill="#15171a" text-anchor="middle">
+<text x="90" y="55">Inicio</text><text x="90" y="130">Mostrar menú</text><text x="90" y="219">¿opción?</text>
+<text x="278" y="219">Pedir a, b</text><text x="425" y="219">Calcular</text><text x="558" y="219">Mostrar</text>
+<text x="90" y="325">Fin</text>
+</g>
+<g fill="#0a6b5c" font-size="12"><text x="160" y="207">1–4</text><text x="98" y="280">0</text><text x="430" y="295">volver al menú</text></g>
+</svg>

@@ -1,0 +1,22 @@
+<!--meta {"title":"Materiales educativos de informática: apuntes, guías y ejercicios","desc":"Biblioteca filtrable de materiales de informática: apuntes, guías, ejercicios, evaluaciones, código, videos y enlaces por materia, nivel, tema, dificultad, tipo y formato.","page":"materiales","priority":"0.9"} -->
+<header class="page-head">
+  <div class="container">
+    <div data-crumb></div>
+    <span class="eyebrow">Biblioteca</span>
+    <h1>Materiales educativos</h1>
+    <p class="lead">Apuntes, guías, ejercicios, evaluaciones, código y enlaces. Combiná filtros o buscá por palabra: la dirección de la página se actualiza para que puedas compartir la búsqueda.</p>
+  </div>
+</header>
+<section class="section--tight" style="padding-bottom:clamp(48px,7vw,96px)">
+  <div class="container split split--aside-left">
+    <aside class="filters" aria-label="Filtros">
+      <button class="btn filters-toggle" id="filters-toggle" type="button" aria-expanded="false" aria-controls="mat-filters-body"><i data-icon="filter"></i><span>Filtros</span></button>
+      <div class="filters__head"><h2><i data-icon="filter"></i>Filtrar</h2></div>
+      <div class="filters__body" id="mat-filters-body"></div>
+    </aside>
+    <div>
+      <div class="results-meta" id="mat-count" aria-live="polite"></div>
+      <div class="grid grid-2" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr))" id="mat-grid"></div>
+    </div>
+  </div>
+</section>

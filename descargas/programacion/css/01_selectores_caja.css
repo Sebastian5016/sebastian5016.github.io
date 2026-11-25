@@ -1,0 +1,25 @@
+/* Selectores y modelo de caja */
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+}
+
+/* Selector de clase */
+.tarjeta {
+  width: 280px;
+  padding: 20px;          /* espacio interno */
+  margin: 16px;           /* espacio externo */
+  border: 2px solid #0a6b5c;
+  border-radius: 12px;
+  box-sizing: border-box; /* el ancho incluye padding y borde */
+}
+
+/* Selector de id */
+#destacada {
+  background: #e1efea;
+}
+
+/* Pseudoclase */
+.tarjeta:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bases de datos y consultas SQL — Apunte · Walter Sebastián Fernández</title>
+<meta name="description" content="Tablas, claves, relaciones y consultas SQL: SELECT, WHERE, ORDER BY, JOIN y GROUP BY.">
+<meta name="author" content="Walter Sebastián Fernández">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="apunte.css">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <span>Walter Sebastián Fernández · Apuntes de Informática</span>
+    <span class="noprint"><a href="../alumnos.html">← Recursos para alumnos</a> · <a href="../descargas/apuntes/sql-consultas.pdf" download>Descargar PDF</a> · <button class="print-btn" onclick="print()">Imprimir</button></span>
+  </div>
+  <div class="kicker">Apunte · Bases de datos</div>
+  <h1>Bases de datos y consultas SQL</h1>
+  <div class="meta"><span>Nivel: Intermedio</span><span>Lectura: 16 min</span><span>Actualizado: 2026-11</span></div>
+<div class="objetivos"><strong>Al terminar vas a poder:</strong><ul><li>Explicar qué es una base de datos relacional.</li><li>Identificar claves primarias y foráneas.</li><li>Escribir consultas SQL con filtros, orden, uniones y agrupamientos.</li></ul></div>
+
+<h2>1. Conceptos</h2>
+<ul><li><strong>Tabla:</strong> conjunto de datos sobre un mismo tema (filas = registros, columnas = campos).</li>
+<li><strong>Clave primaria (PK):</strong> identifica cada fila de forma única.</li>
+<li><strong>Clave foránea (FK):</strong> campo que apunta a la PK de otra tabla y crea la relación.</li></ul>
+
+<h2>2. Consultas básicas</h2>
+<pre>SELECT titulo, autor FROM libros;               -- elegir columnas
+SELECT * FROM libros WHERE anio &lt; 1950;          -- filtrar
+SELECT * FROM libros ORDER BY anio DESC;         -- ordenar
+SELECT COUNT(*) FROM libros;                     -- contar</pre>
+
+<h2>3. Uniones (JOIN)</h2>
+<pre>SELECT e.codigo, m.nombre, n.nota
+FROM notas n
+JOIN estudiantes e ON e.id = n.estudiante_id
+JOIN materias m    ON m.id = n.materia_id;</pre>
+
+<h2>4. Agrupamientos</h2>
+<pre>SELECT materia_id, AVG(nota) AS promedio
+FROM notas
+GROUP BY materia_id
+HAVING AVG(nota) &gt;= 6;</pre>
+<table><tr><th>Función</th><th>Calcula</th></tr><tr><td>COUNT</td><td>Cantidad</td></tr><tr><td>SUM</td><td>Suma</td></tr><tr><td>AVG</td><td>Promedio</td></tr><tr><td>MIN / MAX</td><td>Mínimo / máximo</td></tr></table>
+
+<div class="act"><h2>Actividad</h2><p>Descargá <code>esquema.sql</code> del proyecto “Sistema de notas”, abrilo en <a href="https://sqliteonline.com/" target="_blank" rel="noopener">SQLite Online</a> y escribí una consulta que muestre el promedio de cada curso.</p></div>
+  <footer>Material educativo abierto · Walter Sebastián Fernández · Licencia CC BY-NC-SA 4.0 · Podés usarlo y adaptarlo citando la fuente, sin fines comerciales.</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+Criterio,Excelente (4),Muy bien (3),En proceso (2),Inicial (1)
+Comprensión del problema,Explica el problema con claridad y sus límites,Explica el problema con algún detalle faltante,Lo explica de forma parcial,No logra explicar el problema
+Planificación,Presenta algoritmo o diseño completo antes de construir,Presenta un diseño con omisiones menores,Diseño incompleto,Sin planificación
+Funcionamiento,El producto funciona en todos los casos probados,Funciona con errores menores,Funciona parcialmente,No funciona
+Calidad técnica,Código o producto ordenado comentado y con buenas prácticas,Ordenado con mejoras posibles,Desordenado pero comprensible,Difícil de comprender
+Documentación,README o informe claro con capturas y pasos,Documentación suficiente,Documentación escasa,Sin documentación
+Reflexión,Identifica qué aprendió y propone mejoras concretas,Identifica aprendizajes,Reflexión superficial,Sin reflexión
+Trabajo colaborativo,Aporta y ayuda al equipo de forma constante,Aporta al equipo,Aporta ocasionalmente,No participa

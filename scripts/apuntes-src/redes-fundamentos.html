@@ -1,0 +1,30 @@
+<!--meta {"titulo":"Fundamentos de redes e Internet","area":"Redes","nivel":"Inicial a intermedio","lectura":"18 min","fecha":"2026-11","descripcion":"Qué es una red, tipos, dispositivos, direcciones IP, DNS y cómo viaja la información por Internet."} -->
+<div class="objetivos"><strong>Al terminar vas a poder:</strong><ul><li>Clasificar redes por alcance.</li><li>Explicar qué hacen el router, el switch y el access point.</li><li>Entender direcciones IP, máscara, puerta de enlace y DNS.</li></ul></div>
+
+<h2>1. ¿Qué es una red?</h2>
+<p>Un conjunto de dispositivos conectados que comparten información y recursos. Internet es una <strong>red de redes</strong>.</p>
+
+<h2>2. Tipos por alcance</h2>
+<table><tr><th>Tipo</th><th>Alcance</th><th>Ejemplo</th></tr>
+<tr><td>PAN</td><td>Personal (metros)</td><td>Auriculares Bluetooth</td></tr>
+<tr><td>LAN</td><td>Edificio</td><td>Red de la escuela</td></tr>
+<tr><td>MAN</td><td>Ciudad</td><td>Red de un municipio</td></tr>
+<tr><td>WAN</td><td>Países</td><td>Internet</td></tr></table>
+
+<h2>3. Dispositivos</h2>
+<ul><li><strong>Switch:</strong> conecta equipos dentro de la misma red local.</li>
+<li><strong>Router:</strong> conecta redes distintas y decide la ruta de los paquetes.</li>
+<li><strong>Access point:</strong> da acceso inalámbrico (Wi‑Fi).</li>
+<li><strong>Módem:</strong> convierte la señal del proveedor de Internet.</li></ul>
+
+<h2>4. Direcciones IP</h2>
+<p>Cada dispositivo tiene una dirección IP, por ejemplo <code>192.168.1.25</code>. La <strong>máscara</strong> (<code>255.255.255.0</code> o <code>/24</code>) indica qué parte identifica a la red y qué parte al equipo. La <strong>puerta de enlace</strong> es el router por el que se sale a otras redes.</p>
+<div class="box"><strong>DNS</strong> traduce nombres en direcciones: cuando escribís <code>wikipedia.org</code>, un servidor DNS responde con su IP.</div>
+
+<h2>5. Comandos útiles</h2>
+<pre>ipconfig        (Windows)  /  ip a   (Linux)   → ver mi IP
+ping 8.8.8.8    → ¿llego a ese equipo?
+tracert google.com  /  traceroute google.com → ¿por dónde pasan los paquetes?
+nslookup google.com → ¿qué IP tiene ese nombre?</pre>
+
+<div class="act"><h2>Actividad</h2><p>Ejecutá <code>ipconfig</code> (o <code>ip a</code>) en tu computadora. Anotá tu IP, máscara y puerta de enlace. Después hacé <code>tracert</code> a un sitio y contá cuántos saltos hay.</p></div>

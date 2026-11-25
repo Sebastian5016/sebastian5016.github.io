@@ -1,0 +1,21 @@
+/* Flexbox: una dimensión */
+.menu {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Grid: dos dimensiones */
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+/* Diseño adaptable (responsive) */
+@media (max-width: 600px) {
+  .menu {
+    flex-direction: column;
+  }
+}

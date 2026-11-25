@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 380" font-family="IBM Plex Mono,Menlo,Consolas,monospace" font-size="12">
+<rect width="640" height="380" fill="#f6f5f1"/>
+<g stroke="#454a52" stroke-width="1.6"><path d="M320 70V120"/><path d="M320 165V210"/><path d="M70 210H570"/><path d="M70 210V250M195 210V250M320 210V250M445 210V250M570 210V250"/></g>
+<rect x="280" y="30" width="80" height="40" rx="20" fill="#15171a"/><text x="320" y="55" fill="#f6f5f1" text-anchor="middle" font-weight="700">Router</text>
+<text x="370" y="20" fill="#636871">→ Internet</text>
+<rect x="260" y="120" width="120" height="45" rx="6" fill="#0a6b5c"/><text x="320" y="147" fill="#fff" text-anchor="middle" font-weight="700">Switch central</text>
+<g text-anchor="middle">
+<g><rect x="15" y="250" width="110" height="90" rx="8" fill="#fff" stroke="#15171a"/><text x="70" y="275" font-weight="700" fill="#15171a">Administr.</text><text x="70" y="298" fill="#0a6b5c">VLAN 10</text><text x="70" y="318" fill="#636871">.10.0/24</text></g>
+<g><rect x="140" y="250" width="110" height="90" rx="8" fill="#fff" stroke="#15171a"/><text x="195" y="275" font-weight="700" fill="#15171a">Profesores</text><text x="195" y="298" fill="#0a6b5c">VLAN 20</text><text x="195" y="318" fill="#636871">.20.0/24</text></g>
+<g><rect x="265" y="250" width="110" height="90" rx="8" fill="#fff" stroke="#15171a"/><text x="320" y="275" font-weight="700" fill="#15171a">Laboratorio</text><text x="320" y="298" fill="#0a6b5c">VLAN 30</text><text x="320" y="318" fill="#636871">.30.0/24</text></g>
+<g><rect x="390" y="250" width="110" height="90" rx="8" fill="#fff" stroke="#15171a"/><text x="445" y="275" font-weight="700" fill="#15171a">Biblioteca</text><text x="445" y="298" fill="#0a6b5c">VLAN 40</text><text x="445" y="318" fill="#636871">.40.0/24</text></g>
+<g><rect x="515" y="250" width="110" height="90" rx="8" fill="#fff" stroke="#15171a" stroke-dasharray="4 3"/><text x="570" y="275" font-weight="700" fill="#15171a">Wi‑Fi alumnos</text><text x="570" y="298" fill="#0a6b5c">VLAN 50</text><text x="570" y="318" fill="#636871">.50.0/23</text></g>
+</g>
+<text x="20" y="370" fill="#a12d23">✗ Wi‑Fi alumnos → Administración (bloqueado por ACL)</text>
+</svg>

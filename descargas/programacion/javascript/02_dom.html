@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Contador con JavaScript</title>
+</head>
+<body>
+  <h1>Contador: <span id="valor">0</span></h1>
+  <button id="sumar">+1</button>
+  <button id="reiniciar">Reiniciar</button>
+
+  <script>
+    let contador = 0;
+    const valor = document.getElementById("valor");
+
+    document.getElementById("sumar").addEventListener("click", () => {
+      contador++;
+      valor.textContent = contador;
+    });
+
+    document.getElementById("reiniciar").addEventListener("click", () => {
+      contador = 0;
+      valor.textContent = contador;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "Walter Sebastián Fernández · Profesor de Informática",
+  "short_name": "Walter Fernández",
+  "description": "Portfolio docente y plataforma educativa abierta de informática.",
+  "lang": "es",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f6f5f1",
+  "theme_color": "#0a6b5c",
+  "icons": [{ "src": "assets/img/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verificador de contraseñas — Demo</title>
+<style>
+  :root { --ok: #24663a; --mid: #8a4b06; --bad: #a12d23; font-family: system-ui, sans-serif; }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #f6f5f1; color: #15171a; padding: 16px; }
+  main { width: min(460px, 100%); background: #fff; border: 1px solid #dedcd3; border-radius: 16px; padding: 28px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  p { color: #454a52; margin: 0 0 20px; font-size: .95rem; }
+  label { font-weight: 600; font-size: .85rem; display: block; margin-bottom: 6px; }
+  input { width: 100%; box-sizing: border-box; font-size: 1.05rem; padding: 12px 14px; border: 1px solid #c9c6bb; border-radius: 10px; }
+  .barra { height: 10px; background: #eeede7; border-radius: 99px; margin: 16px 0 6px; overflow: hidden; }
+  .barra div { height: 100%; width: 0; transition: width .3s, background .3s; }
+  #nivel { font-weight: 700; font-size: .9rem; }
+  ul { list-style: none; padding: 0; margin: 16px 0 0; font-size: .9rem; }
+  li { padding: 4px 0; }
+  li::before { content: "✗ "; color: var(--bad); font-weight: 700; }
+  li.ok::before { content: "✓ "; color: var(--ok); }
+  small { display: block; margin-top: 18px; color: #636871; }
+</style>
+</head>
+<body>
+<main>
+  <h1>🔐 Verificador de contraseñas</h1>
+  <p>Escribí una contraseña de prueba (no uses una real). Todo se calcula en tu navegador: nada se envía a internet.</p>
+  <label for="clave">Contraseña de prueba</label>
+  <input id="clave" type="text" autocomplete="off" spellcheck="false">
+  <div class="barra" aria-hidden="true"><div id="barra"></div></div>
+  <div id="nivel" aria-live="polite">Nivel: —</div>
+  <ul id="reglas"></ul>
+  <small>Proyecto educativo · Seguridad informática</small>
+</main>
+<script>
+// Cada regla tiene un texto y una función que devuelve true si se cumple.
+const REGLAS = [
+  { texto: "Al menos 12 caracteres", prueba: c => c.length >= 12 },
+  { texto: "Una letra mayúscula", prueba: c => /[A-ZÁÉÍÓÚÑ]/.test(c) },
+  { texto: "Una letra minúscula", prueba: c => /[a-záéíóúñ]/.test(c) },
+  { texto: "Un número", prueba: c => /[0-9]/.test(c) },
+  { texto: "Un símbolo (!, ?, #, ...)", prueba: c => /[^A-Za-z0-9ÁÉÍÓÚÑáéíóúñ]/.test(c) },
+  { texto: "No es una contraseña común", prueba: c => !COMUNES.includes(c.toLowerCase()) },
+];
+const COMUNES = ["123456", "12345678", "password", "contraseña", "qwerty", "111111", "abc123", "river", "boca"];
+const NIVELES = [
+  { min: 0, nombre: "Muy débil", color: "var(--bad)" },
+  { min: 3, nombre: "Débil", color: "var(--bad)" },
+  { min: 4, nombre: "Aceptable", color: "var(--mid)" },
+  { min: 5, nombre: "Buena", color: "var(--mid)" },
+  { min: 6, nombre: "Fuerte", color: "var(--ok)" },
+];
+
+const entrada = document.getElementById("clave");
+const lista = document.getElementById("reglas");
+
+function evaluar() {
+  const clave = entrada.value;
+  let cumplidas = 0;
+  lista.innerHTML = "";
+  for (const regla of REGLAS) {
+    const ok = clave.length > 0 && regla.prueba(clave);
+    if (ok) cumplidas++;
+    const li = document.createElement("li");
+    li.textContent = regla.texto;
+    if (ok) li.className = "ok";
+    lista.appendChild(li);
+  }
+  const nivel = NIVELES.filter(n => cumplidas >= n.min).pop();
+  const barra = document.getElementById("barra");
+  barra.style.width = (cumplidas / REGLAS.length * 100) + "%";
+  barra.style.background = nivel.color;
+  document.getElementById("nivel").textContent =
+    clave ? `Nivel: ${nivel.nombre} (${cumplidas}/${REGLAS.length})` : "Nivel: —";
+}
+
+entrada.addEventListener("input", evaluar);
+evaluar();
+</script>
+</body>
+</html>

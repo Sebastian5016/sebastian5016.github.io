@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Formulario accesible</title>
+</head>
+<body>
+  <h1>Inscripción al taller</h1>
+  <form>
+    <p>
+      <label for="nombre">Nombre</label><br>
+      <input id="nombre" name="nombre" required>
+    </p>
+    <p>
+      <label for="curso">Curso</label><br>
+      <select id="curso" name="curso">
+        <option>1º año</option>
+        <option>2º año</option>
+        <option>3º año</option>
+      </select>
+    </p>
+    <fieldset>
+      <legend>Taller</legend>
+      <label><input type="radio" name="taller" value="robotica"> Robótica</label>
+      <label><input type="radio" name="taller" value="web"> Diseño web</label>
+    </fieldset>
+    <button type="submit">Enviar</button>
+  </form>
+</body>
+</html>

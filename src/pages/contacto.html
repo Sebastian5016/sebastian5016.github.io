@@ -1,0 +1,32 @@
+<!--meta {"title":"Contacto — Walter Sebastián Fernández, profesor de informática","desc":"Contacto profesional de Walter Sebastián Fernández para instituciones educativas, propuestas, consultas sobre materiales y colaboraciones.","page":"contacto","priority":"0.8"} -->
+<header class="page-head">
+  <div class="container">
+    <div data-crumb></div>
+    <span class="eyebrow">Contacto</span>
+    <h1>Hablemos.</h1>
+    <p class="lead">Instituciones, colegas, estudiantes o personas interesadas en los materiales: escribime y te respondo a la brevedad.</p>
+  </div>
+</header>
+<section class="section--tight" style="padding-bottom:clamp(48px,7vw,96px)">
+  <div class="container split">
+    <form class="form" id="contact-form" novalidate>
+      <div class="form-row">
+        <div class="field"><label for="f-nombre">Nombre *</label><input id="f-nombre" name="nombre" class="input" autocomplete="name" required aria-describedby="err-nombre"><span class="error" id="err-nombre" aria-live="polite"></span></div>
+        <div class="field"><label for="f-email">Correo electrónico *</label><input id="f-email" name="email" type="email" class="input" autocomplete="email" required aria-describedby="err-email"><span class="error" id="err-email" aria-live="polite"></span></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label for="f-inst">Institución (opcional)</label><input id="f-inst" name="institucion" class="input" autocomplete="organization"></div>
+        <div class="field"><label for="f-motivo">Motivo</label><select id="f-motivo" name="motivo" class="select"><option>Institución</option><option>Propuesta laboral</option><option>Consulta sobre materiales</option><option>Colaboración</option><option>Estudiante</option><option>Otro</option></select></div>
+      </div>
+      <div class="field"><label for="f-msg">Mensaje *</label><textarea id="f-msg" name="mensaje" class="textarea" required aria-describedby="err-mensaje hint-msg"></textarea><span class="form__hint" id="hint-msg">No incluyas datos sensibles (DNI, domicilio, notas de estudiantes).</span><span class="error" id="err-mensaje" aria-live="polite"></span></div>
+      <div style="position:absolute;left:-9999px" aria-hidden="true"><label>No completar <input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <div id="form-status" class="form__status" hidden role="status"></div>
+      <div><button class="btn btn--primary btn--lg" type="submit"><i data-icon="send"></i>Enviar mensaje</button></div>
+    </form>
+    <aside class="stack" style="--stack:14px">
+      <h2 style="font-size:1.2rem">Otros canales</h2>
+      <div class="stack" style="--stack:10px" id="channels"></div>
+      <div class="info-panel" style="margin-top:24px"><dl><div><dt>Disponibilidad</dt><dd id="availability"></dd></div><div><dt>Privacidad</dt><dd>Los datos del formulario se usan solo para responderte. <a href="privacidad.html">Más información</a>.</dd></div></dl></div>
+    </aside>
+  </div>
+</section>
