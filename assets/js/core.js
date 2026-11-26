@@ -262,8 +262,7 @@
   // area: perfil | aprender | proyectos | recursos   ·   mode: portfolio | aula
   const PAGES = {
     inicio: { t: "Inicio", href: "index.html", icon: "home" },
-    "sobre-mi": { t: "Sobre mí", href: "sobre-mi.html", icon: "user", d: "Trayectoria docente y técnica", area: "perfil" },
-    portfolio: { t: "Portfolio profesional", href: "portfolio.html", icon: "briefcase", d: "Perfil en 2 minutos para instituciones", area: "perfil" },
+    portfolio: { t: "Portfolio profesional", href: "portfolio.html", icon: "briefcase", d: "Trayectoria, experiencia y proyectos", area: "perfil" },
     blog: { t: "Blog", href: "blog.html", icon: "pen", d: "Ideas y experiencias docentes", area: "perfil" },
     articulo: { t: "Artículo", parent: "blog" },
     contacto: { t: "Contacto", href: "contacto.html", icon: "mail", d: "Propuestas y consultas", area: "perfil" },
@@ -283,7 +282,7 @@
     privacidad: { t: "Privacidad", href: "privacidad.html", icon: "lock" },
   };
   const AREAS = [
-    { id: "perfil", t: "Perfil", d: "Mi trayectoria profesional y docente", items: [["sobre-mi"], ["portfolio"], ["blog"], ["contacto"]] },
+    { id: "perfil", t: "Perfil", d: "Mi trayectoria profesional y docente", items: [["portfolio"], ["blog"], ["contacto"]] },
     { id: "aprender", t: "Aprender", d: "Materiales, recursos y rutas", aula: true, items: [["alumnos"], ["rutas"], ["materiales"], ["programacion"], ["ia"], ["tecnologia"]] },
     { id: "proyectos", t: "Proyectos", d: "Propios y educativos", items: [["proyectos", "Todos los proyectos", "proyectos.html"], ["proyectos", "Proyectos profesionales", "proyectos.html?tipo=profesional", "briefcase", "Lo que desarrollo"], ["proyectos", "Proyectos educativos", "proyectos.html?tipo=educativo", "grad", "Para hacer en clase"], ["proyectos-alumnos"]] },
     { id: "recursos", t: "Recursos", d: "Herramientas, archivos, código y enlaces", aula: true, items: [["recursos"], ["recursos", "Código descargable", "recursos.html?g=Programación", "code", "Ejemplos por lenguaje"], ["recursos", "Herramientas", "recursos.html#h-tl", "tool", "Software recomendado"], ["materiales", "Videos y enlaces", "materiales.html?formato=enlace", "link", "Sitios recomendados"], ["buscar"]] },

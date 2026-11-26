@@ -81,12 +81,6 @@
       <div class="card__foot">${level(r.nivel)}<span class="link-arrow">${pct > 0 ? "Continuar" : "Empezar"} ${icon("arrow")}</span></div>
     </article>`;
   }
-  function timeline(items) {
-    const lbl = { formacion: "Formación", experiencia: "Experiencia", actual: "Actualidad" };
-    return `<ol class="timeline">${items.map((t) => `<li class="timeline__item" data-type="${esc(t.tipo)}"><div class="timeline__type"><span>${esc(t.etiqueta || lbl[t.tipo])}</span>${t.periodo ? `<span>· ${esc(t.periodo)}</span>` : ""}</div><h3>${esc(t.titulo)}</h3>${t.lugar ? `<p class="timeline__place">${esc(t.lugar)}</p>` : ""}${t.texto ? `<p>${esc(t.texto)}</p>` : ""}</li>`).join("")}</ol>`;
-  }
-  const timelineLegend = `<div class="legend" aria-hidden="true"><span><i class="sq"></i>Formación</span><span><i></i>Experiencia</span><span><i class="fill"></i>Hoy</span></div>`;
-  const methodSteps = (row = true) => `<ol class="steps${row ? " steps--row" : ""}">${S.metodologia.map((m) => `<li class="step"><strong>${esc(m.titulo)}</strong><p>${esc(m.texto)}</p></li>`).join("")}</ol>`;
   const fileRow = (path) => {
     const f = fileInfo(path);
     if (!f) return `<li><span class="row"><span class="format">—</span>${esc(path.split("/").pop())}<span class="muted" style="margin-left:auto">Próximamente</span></span></li>`;
@@ -128,45 +122,6 @@
       </dl></div></article></div>` + rest.map(projectCard).join(""));
     mount("#home-routes", WF.rutas.slice(0, 3).map(routeCard).join(""));
     mount("#home-posts", [...WF.blog].sort((a, b) => b.fecha.localeCompare(a.fecha)).slice(0, 3).map(postCard).join(""));
-  }
-
-  /* ============================= SOBRE MÍ ============================= */
-  function sobreMi() {
-    mount("#perfil-humano", S.perfilHumano.map((p) => `<p>${esc(p)}</p>`).join(""));
-    mount("#portrait", `<div class="portrait"><img src="${esc(S.foto)}" alt="${esc(S.fotoAlt)}" width="640" height="640"></div>`);
-    mount("#actualmente", S.actualmente.map((a) => `<li><strong>${esc(a.escuela)} · ${esc(a.lugar)}</strong><span>${esc(a.materia)} — ${esc(a.cursos)}</span></li>`).join(""));
-    mount("#enfoque", S.enfoque.map((e) => `<li>${icon("heart")}${esc(e)}</li>`).join(""));
-    mount("#timeline", timelineLegend + timeline(S.lineaTemporal));
-    mount("#especializacion", S.especializacion.map((e) => `<div class="card"><div class="card__icon">${icon(e.icono)}</div><h3 class="card__title">${esc(e.titulo)}</h3><p class="card__text" style="margin:0">${esc(e.texto)}</p></div>`).join(""));
-    mount("#intereses", S.intereses.map((i) => `<span class="chip" style="cursor:default">${esc(i)}</span>`).join(""));
-    mount("#metodo-steps", methodSteps());
-  }
-
-  /* ============================ PORTFOLIO ============================= */
-  function portfolio() {
-    mount("#pf-perfil", `<p class="lead" style="max-width:none">${esc(S.perfilDocente)}</p>`);
-    mount("#pf-formacion", timeline(S.lineaTemporal.filter((t) => t.tipo !== "experiencia")));
-    mount("#pf-experiencia", timeline(S.lineaTemporal.filter((t) => t.tipo !== "formacion")));
-    const list = (arr) => `<ul class="check-list">${arr.map((c) => `<li>${icon("check")}${esc(c)}</li>`).join("")}</ul>`;
-    mount("#pf-competencias", `<div class="skill-group"><h3>${icon("grad")}Competencias docentes</h3>${list(S.competencias.docentes)}</div><div class="skill-group"><h3>${icon("code")}Competencias tecnológicas</h3>${list(S.competencias.tecnologicas)}</div>`);
-    mount("#pf-herramientas", S.herramientas.map((g) => `<div class="skill-group"><h3 style="font-size:.85rem;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.05em;color:var(--ink-3)">${esc(g.grupo)}</h3>${tags(g.items)}</div>`).join(""));
-    mount("#pf-aportes", S.aportes.map((a) => `<div class="card"><div class="card__icon">${icon(a.icono)}</div><h3 class="card__title">${esc(a.titulo)}</h3><p class="card__text" style="margin:0">${esc(a.texto)}</p></div>`).join(""));
-    mount("#pf-metodo", methodSteps());
-    mount("#pf-proyectos", WF.proyectos.filter((p) => p.estado === "publicado").slice(0, 6).map((p) => `<a class="card card--link" href="proyecto.html?id=${esc(p.id)}" style="text-decoration:none;color:inherit"><div class="card__kicker"><span class="tag tag--accent">${esc(areaName(p.area))}</span>${level(p.nivel)}</div><h3 class="card__title">${esc(p.titulo)}</h3><p class="card__text" style="margin:0">${esc(p.resumen)}</p></a>`).join(""));
-    const c = S.contacto;
-    mount("#pf-actual", S.actualmente.map((a) => `<li><strong>${esc(a.escuela)} · ${esc(a.lugar)}</strong><span>${esc(a.materia)} — ${esc(a.cursos)}</span></li>`).join(""));
-    mount("#pf-datos", `<dl class="kv">
-      <dt>Niveles</dt><dd>${esc(S.niveles)}</dd>
-      <dt>Inscripción</dt><dd>${esc(S.inscripcion)}</dd>
-      <dt>Idiomas</dt><dd>${esc(S.idiomas.join(" · "))}</dd>
-      <dt>Ubicación</dt><dd>${esc(c.ubicacion)}</dd>
-      <dt>Disponibilidad</dt><dd>${esc(c.disponibilidad)}</dd>
-      ${c.email ? `<dt>Correo</dt><dd><a href="mailto:${esc(c.email)}">${esc(c.email)}</a></dd>` : ""}
-      ${S.redes.linkedin ? `<dt>LinkedIn</dt><dd><a href="${esc(S.redes.linkedin)}" target="_blank" rel="noopener">Perfil</a></dd>` : ""}
-      ${S.redes.github ? `<dt>GitHub</dt><dd><a href="${esc(S.redes.github)}" target="_blank" rel="noopener">${esc(S.redes.github.replace("https://", ""))}</a></dd>` : ""}
-      <dt>Plataforma</dt><dd>${WF.proyectos.length} proyectos · ${WF.materiales.length} materiales · ${WF.lenguajes.length} lenguajes</dd>
-    </dl>`);
-    const pb = $("[data-print]"); if (pb) pb.addEventListener("click", () => window.print());
   }
 
   /* ============================ PROYECTOS ============================= */
@@ -562,7 +517,7 @@
         <div class="post-meta" style="margin-bottom:16px"><a class="tag tag--accent" href="blog.html?cat=${a.categoria}" style="text-decoration:none">${esc(T.blog[a.categoria])}</a><time datetime="${a.fecha}">${fmtDate(a.fecha, { day: "numeric", month: "long", year: "numeric" })}</time><span class="mono" style="font-size:var(--fs-xs)">${esc(a.lectura)} de lectura</span></div>
         <h1 style="max-width:none">${esc(a.titulo)}</h1>
         <p class="lead">${esc(a.resumen)}</p>
-        <p class="muted" style="font-size:var(--fs-sm);margin-top:16px">Por <a href="sobre-mi.html">${esc(S.nombre)}</a></p>
+        <p class="muted" style="font-size:var(--fs-sm);margin-top:16px">Por <a href="portfolio.html">${esc(S.nombre)}</a></p>
       </div></header>
       <div class="container container--narrow">
         <div class="article-cover" role="img" aria-label="${esc(a.imagenAlt || a.titulo)}">${cover(a.id + "-cover", "", "")}</div>
@@ -691,7 +646,7 @@
   }
 
   /* ============================ Despachador ============================ */
-  const ROUTES = { inicio: home, "sobre-mi": sobreMi, portfolio, proyectos, proyecto, programacion, lenguaje, materiales, alumnos, rutas, ruta, "proyectos-alumnos": proyectosAlumnos, ia, tecnologia, blog, articulo, recursos, contacto, buscar };
+  const ROUTES = { inicio: home, proyectos, proyecto, programacion, lenguaje, materiales, alumnos, rutas, ruta, "proyectos-alumnos": proyectosAlumnos, ia, tecnologia, blog, articulo, recursos, contacto, buscar };
   const fn = ROUTES[document.body.dataset.page];
   if (fn) {
     try { fn(); } catch (err) { console.error(err); const m = $("#main"); if (m) m.insertAdjacentHTML("afterbegin", `<div class="container section"><div class="empty">${icon("alert")}<strong>Algo no se cargó bien</strong>Recargá la página. Si el problema sigue, avisame desde <a href="contacto.html">contacto</a>.</div></div>`); }

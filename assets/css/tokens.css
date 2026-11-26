@@ -1,0 +1,100 @@
+/* ==========================================================================
+   TOKENS DE DISEÑO — compartidos por la plataforma (main.css) y el portfolio
+   (portfolio.css). Cambiar acá un color o una tipografía lo cambia en todo el sitio.
+   ========================================================================== */
+:root {
+  --bg: #07040E;
+  --bg-raise: #0C0818;
+  --panel: #110C20;
+  --panel-2: #17112B;
+  --surface: rgba(255, 255, 255, 0.035);
+  --surface-2: rgba(255, 255, 255, 0.055);
+  --surface-3: rgba(255, 255, 255, 0.09);
+  --ink: #F4F1FC;
+  --ink-2: #BBB4D8;
+  --ink-3: #8C85AE;
+  --line: rgba(187, 180, 216, 0.12);
+  --line-strong: rgba(187, 180, 216, 0.24);
+  --p: #7357FF;
+  --p-hi: #A796FF;
+  --p-rgb: 115, 87, 255;
+  --s: #2CC9EA;
+  --s-hi: #A6ECFA;
+  --s-rgb: 44, 201, 234;
+  --accent: var(--p);
+  --accent-rgb: var(--p-rgb);
+  --accent-text: #B6A8FF;
+  --accent-soft: rgba(115, 87, 255, 0.14);
+  --accent-ink: #FFFFFF;
+  --ok: #4BE39A;
+  --ok-soft: rgba(75, 227, 154, 0.12);
+  --warn: #FFB84D;
+  --warn-soft: rgba(255, 184, 77, 0.12);
+  --danger: #FF6B7A;
+  --danger-soft: rgba(255, 107, 122, 0.12);
+  --code-bg: #0A0716;
+  --code-ink: #E6E1F5;
+  --glass: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02));
+  --glass-sheen: radial-gradient(120% 90% at 0% 0%, rgba(255, 255, 255, 0.07), transparent 55%);
+  --glass-border: linear-gradient(135deg, rgba(255, 255, 255, 0.42), rgba(44, 201, 234, 0.34));
+  --blur: blur(22px) saturate(175%);
+  --btn-grad: linear-gradient(115deg, #6A4CF6 0%, #4F62E8 48%, #1F8FBF 100%);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 12px 32px -12px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 32px 80px -24px rgba(0, 0, 0, 0.85);
+  --font-sans: "Geist", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --fs-xs: 0.78rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: clamp(1.0625rem, 1rem + 0.25vw, 1.125rem);
+  --fs-lg: clamp(1.25rem, 1.1rem + 0.5vw, 1.625rem);
+  --fs-xl: clamp(1.75rem, 1.3rem + 1.6vw, 2.6rem);
+  --fs-2xl: clamp(2.125rem, 1.4rem + 2.6vw, 3.75rem);
+  --fs-3xl: clamp(2.75rem, 1.5rem + 4.4vw, 5rem);
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 18px;
+  --r-xl: 24px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --maxw: 1200px;
+  --maxw-text: 68ch;
+  --header-h: 68px;
+  --ease: cubic-bezier(0.22, 0.7, 0.2, 1);
+  color-scheme: dark;
+}
+[data-mode="aula"] {
+  --accent: var(--s);
+  --accent-rgb: var(--s-rgb);
+  --accent-text: #8DE6F7;
+  --accent-soft: rgba(44, 201, 234, 0.12);
+  --accent-ink: #03161C;
+}
+:root[data-theme="light"] {
+  --bg: #F6F5FA;
+  --bg-raise: #FFFFFF;
+  --panel: #FFFFFF;
+  --panel-2: #F1EFF8;
+  --surface: #FFFFFF;
+  --surface-2: #F1EFF8;
+  --surface-3: #E6E3F1;
+  --ink: #15121F;
+  --ink-2: #474260;
+  --ink-3: #625C7E;
+  --line: rgba(21, 18, 31, 0.11);
+  --line-strong: rgba(21, 18, 31, 0.22);
+  --accent-text: #5236E0;
+  --accent-soft: #ECE8FF;
+  --ok: #1B7A4B; --ok-soft: #E3F5EB;
+  --warn: #8A5300; --warn-soft: #FCF0DC;
+  --danger: #B0293A; --danger-soft: #FBE5E8;
+  --code-bg: #15121F;
+  --glass: linear-gradient(180deg, #FFFFFF, #FBFAFE);
+  --glass-sheen: linear-gradient(transparent, transparent);
+  --glass-border: linear-gradient(135deg, rgba(21, 18, 31, 0.14), rgba(21, 18, 31, 0.1));
+  --shadow-md: 0 8px 24px -12px rgba(21, 18, 31, 0.18);
+  --shadow-lg: 0 24px 48px -16px rgba(21, 18, 31, 0.22);
+  color-scheme: light;
+}
+:root[data-theme="light"] [data-mode="aula"] { --accent-text: #0A6F86; --accent-soft: #E0F6FB; }
+

@@ -7,7 +7,7 @@ WF.descargas = {
   "ext": "pdf",
   "tipo": "PDF",
   "bytes": 116213,
-  "actualizado": "2026-11-25"
+  "actualizado": "2026-11-26"
  },
  "descargas/apuntes/hardware-componentes.pdf": {
   "ruta": "descargas/apuntes/hardware-componentes.pdf",
@@ -15,7 +15,7 @@ WF.descargas = {
   "ext": "pdf",
   "tipo": "PDF",
   "bytes": 122743,
-  "actualizado": "2026-11-25"
+  "actualizado": "2026-11-26"
  },
  "descargas/apuntes/ia-uso-responsable.pdf": {
   "ruta": "descargas/apuntes/ia-uso-responsable.pdf",
@@ -23,7 +23,7 @@ WF.descargas = {
   "ext": "pdf",
   "tipo": "PDF",
   "bytes": 136989,
-  "actualizado": "2026-11-25"
+  "actualizado": "2026-11-26"
  },
  "descargas/apuntes/introduccion-programacion.pdf": {
   "ruta": "descargas/apuntes/introduccion-programacion.pdf",
@@ -31,7 +31,7 @@ WF.descargas = {
   "ext": "pdf",
   "tipo": "PDF",
   "bytes": 138595,
-  "actualizado": "2026-11-25"
+  "actualizado": "2026-11-26"
  },
  "descargas/apuntes/pensamiento-computacional.pdf": {
   "ruta": "descargas/apuntes/pensamiento-computacional.pdf",
@@ -39,7 +39,7 @@ WF.descargas = {
   "ext": "pdf",
   "tipo": "PDF",
   "bytes": 116833,
-  "actualizado": "2026-11-25"
+  "actualizado": "2026-11-26"
  },
  "descargas/apuntes/procesador-de-textos.pdf": {
   "ruta": "descargas/apuntes/procesador-de-textos.pdf",
@@ -47,7 +47,7 @@ WF.descargas = {
   "ext": "pdf",
   "tipo": "PDF",
   "bytes": 120955,
-  "actualizado": "2026-11-25"
+  "actualizado": "2026-11-26"
  },
  "descargas/apuntes/redes-fundamentos.pdf": {
   "ruta": "descargas/apuntes/redes-fundamentos.pdf",
@@ -55,7 +55,7 @@ WF.descargas = {
   "ext": "pdf",
   "tipo": "PDF",
   "bytes": 125406,
-  "actualizado": "2026-11-25"
+  "actualizado": "2026-11-26"
  },
  "descargas/apuntes/seguridad-basica.pdf": {
   "ruta": "descargas/apuntes/seguridad-basica.pdf",
@@ -63,7 +63,7 @@ WF.descargas = {
   "ext": "pdf",
   "tipo": "PDF",
   "bytes": 125218,
-  "actualizado": "2026-11-25"
+  "actualizado": "2026-11-26"
  },
  "descargas/apuntes/sql-consultas.pdf": {
   "ruta": "descargas/apuntes/sql-consultas.pdf",
@@ -71,7 +71,7 @@ WF.descargas = {
   "ext": "pdf",
   "tipo": "PDF",
   "bytes": 123284,
-  "actualizado": "2026-11-25"
+  "actualizado": "2026-11-26"
  },
  "descargas/docentes/autorizacion-publicacion.txt": {
   "ruta": "descargas/docentes/autorizacion-publicacion.txt",

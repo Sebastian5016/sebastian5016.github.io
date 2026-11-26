@@ -142,7 +142,7 @@ void main(){
   if (h1) splitWords(h1);
 
   // Secciones y tarjetas
-  const SEL = ".section-head, .pillars > *, .audience > *, .steps > *, .grid > *, .doc-block, .timeline__item, .guide-step, .route-level, .stat, .cta-band, .featured-post, .hero-stage > *, .now-list > li, .big-tiles > *";
+  const SEL = ".section-head, .pillars > *, .audience > *, .steps > *, .grid > *, .doc-block, .guide-step, .route-level, .stat, .cta-band, .featured-post, .hero-stage > *, .big-tiles > *";
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
   const seen = new WeakSet();
   const arm = (scope) => {

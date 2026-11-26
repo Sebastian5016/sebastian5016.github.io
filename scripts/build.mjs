@@ -11,6 +11,7 @@ import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
+import { loadData, render as renderPortfolio } from "./portfolio-template.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const run = (f) => execFileSync(process.execPath, [join(root, "scripts", f)], { stdio: "inherit" });
@@ -56,9 +57,20 @@ ${m.sitemap === false ? '<meta name="robots" content="index, follow">\n' : ""}<l
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/main.css">
-<script src="assets/js/theme.js"></script>
-${m.page === "inicio" ? `<script type="application/ld+json">${JSON.stringify(PERSON)}</script>\n` : ""}</head>`;
+<link rel="stylesheet" href="assets/css/tokens.css">
+${m.layout === "portfolio"
+  ? `<link rel="stylesheet" href="assets/css/portfolio.css">\n<script>document.documentElement.classList.add("js")</script>`
+  : `<link rel="stylesheet" href="assets/css/main.css">\n<script src="assets/js/theme.js"></script>`}
+${m.page === "inicio" ? `<script type="application/ld+json">${JSON.stringify(PERSON)}</script>\n` : ""}${m.layout === "portfolio" ? `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "ProfilePage", mainEntity: PERSON["@graph"][0] })}</script>\n` : ""}${m.redirect ? `<meta http-equiv="refresh" content="0; url=${m.redirect}">\n` : ""}</head>`;
+
+// Layout "portfolio": página autónoma, sin el motor de la plataforma
+const portfolioBody = (m, html) => `<body data-page="${m.page}">
+${html}
+<script src="assets/js/portfolio.js"></script>
+</body>
+</html>
+`;
+const PDATA = loadData(root);
 
 const body = (m, content) => `<body data-page="${m.page}">
 <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -83,7 +95,11 @@ for (const f of readdirSync(join(root, "src/pages")).filter((f) => f.endsWith(".
   if (!mm) throw new Error("Falta meta en " + f);
   const m = JSON.parse(mm[1]);
   const content = raw.slice(mm[0].length).trim();
-  writeFileSync(join(root, f), head(m, f) + "\n" + body(m, content));
+  if (m.layout === "portfolio") {
+    const { html, missingDirect } = renderPortfolio(PDATA);
+    writeFileSync(join(root, f), head(m, f) + "\n" + portfolioBody(m, html));
+    if (missingDirect) console.warn("⚠ Portfolio: falta un canal directo (correo, WhatsApp, LinkedIn o formulario) en data/sitio.js. Solo se muestra GitHub.");
+  } else writeFileSync(join(root, f), head(m, f) + "\n" + body(m, content));
   pages.push({ f, m });
 }
 console.log(`✔ ${pages.length} páginas generadas`);

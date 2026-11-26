@@ -10,7 +10,7 @@ Sitio estático (HTML + CSS + JavaScript, sin frameworks): se publica gratis en 
 | Sección | Para quién | Qué hace |
 |---|---|---|
 | Inicio | Todos | Doble entrada: instituciones / estudiantes |
-| Sobre mí · Portfolio | Instituciones, RRHH | Perfil en 2 minutos, versión imprimible en PDF |
+| **Portfolio** (`portfolio.html`) | Directivos, RRHH, colegas | Presentación profesional de una página: perfil, trayectoria, tecnología, proyectos, docencia, formación y contacto. Se genera estática desde `data/perfil.js` |
 | Proyectos | Todos | Fichas de 12 bloques con código, demo, actividad y descargas |
 | Programación | Estudiantes | 9 lenguajes: conceptos, ejemplos, ejercicios, desafíos |
 | Materiales | Estudiantes, docentes | Biblioteca con 6 filtros y URL compartible |
@@ -28,7 +28,7 @@ Búsqueda global con `Ctrl + K` o `/` en todas las páginas.
 
 ## Antes de publicar — completar ✏️
 
-En `data/sitio.js`: correo profesional, LinkedIn, YouTube (opcional), instituciones y años de la línea temporal, y opcionalmente `formEndpoint` (Formspree) para el formulario.
+En `data/sitio.js`: correo, WhatsApp y LinkedIn (hoy el portfolio solo puede mostrar GitHub como canal de contacto). El contenido profesional se edita en `data/perfil.js`.
 
 ## Cómo agregar contenido
 
