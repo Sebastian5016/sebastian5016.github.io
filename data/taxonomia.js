@@ -17,6 +17,7 @@ WF.taxonomia = {
     ofimatica: { nombre: "Ofimática", icono: "file" },
     pensamiento: { nombre: "Pensamiento computacional", icono: "puzzle" },
     diseno: { nombre: "Diseño digital", icono: "palette" },
+    inclusion: { nombre: "Inclusión digital", icono: "heart" },
   },
 
   niveles: {

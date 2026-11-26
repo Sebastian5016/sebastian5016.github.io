@@ -6,7 +6,7 @@ WF.descargas = {
   "nombre": "ejercicios-python.pdf",
   "ext": "pdf",
   "tipo": "PDF",
-  "bytes": 100637,
+  "bytes": 116213,
   "actualizado": "2026-11-25"
  },
  "descargas/apuntes/hardware-componentes.pdf": {
@@ -14,7 +14,7 @@ WF.descargas = {
   "nombre": "hardware-componentes.pdf",
   "ext": "pdf",
   "tipo": "PDF",
-  "bytes": 115614,
+  "bytes": 122743,
   "actualizado": "2026-11-25"
  },
  "descargas/apuntes/ia-uso-responsable.pdf": {
@@ -22,7 +22,7 @@ WF.descargas = {
   "nombre": "ia-uso-responsable.pdf",
   "ext": "pdf",
   "tipo": "PDF",
-  "bytes": 129441,
+  "bytes": 136989,
   "actualizado": "2026-11-25"
  },
  "descargas/apuntes/introduccion-programacion.pdf": {
@@ -30,7 +30,7 @@ WF.descargas = {
   "nombre": "introduccion-programacion.pdf",
   "ext": "pdf",
   "tipo": "PDF",
-  "bytes": 125872,
+  "bytes": 138595,
   "actualizado": "2026-11-25"
  },
  "descargas/apuntes/pensamiento-computacional.pdf": {
@@ -38,7 +38,7 @@ WF.descargas = {
   "nombre": "pensamiento-computacional.pdf",
   "ext": "pdf",
   "tipo": "PDF",
-  "bytes": 109837,
+  "bytes": 116833,
   "actualizado": "2026-11-25"
  },
  "descargas/apuntes/procesador-de-textos.pdf": {
@@ -46,7 +46,7 @@ WF.descargas = {
   "nombre": "procesador-de-textos.pdf",
   "ext": "pdf",
   "tipo": "PDF",
-  "bytes": 115751,
+  "bytes": 120955,
   "actualizado": "2026-11-25"
  },
  "descargas/apuntes/redes-fundamentos.pdf": {
@@ -54,7 +54,7 @@ WF.descargas = {
   "nombre": "redes-fundamentos.pdf",
   "ext": "pdf",
   "tipo": "PDF",
-  "bytes": 111821,
+  "bytes": 125406,
   "actualizado": "2026-11-25"
  },
  "descargas/apuntes/seguridad-basica.pdf": {
@@ -62,7 +62,7 @@ WF.descargas = {
   "nombre": "seguridad-basica.pdf",
   "ext": "pdf",
   "tipo": "PDF",
-  "bytes": 116754,
+  "bytes": 125218,
   "actualizado": "2026-11-25"
  },
  "descargas/apuntes/sql-consultas.pdf": {
@@ -70,7 +70,7 @@ WF.descargas = {
   "nombre": "sql-consultas.pdf",
   "ext": "pdf",
   "tipo": "PDF",
-  "bytes": 109082,
+  "bytes": 123284,
   "actualizado": "2026-11-25"
  },
  "descargas/docentes/autorizacion-publicacion.txt": {

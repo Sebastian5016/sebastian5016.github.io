@@ -25,7 +25,7 @@ for (const file of readdirSync(src).filter(f => f.endsWith(".html"))) {
 <meta name="description" content="${meta.descripcion}">
 <meta name="author" content="Walter Sebastián Fernández">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600&family=Geist+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="apunte.css">
 <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
 </head>

@@ -1,33 +1,32 @@
 <!--meta {"title":"Walter Sebastián Fernández — Profesor de Informática | Tecnología, Programación y Educación Digital","desc":"Portfolio docente y plataforma educativa abierta de Walter Sebastián Fernández, profesor de informática: proyectos, materiales, programación, IA educativa y recursos para estudiantes.","page":"inicio","priority":"1.0"} -->
-<section class="hero">
+<section class="hero" aria-labelledby="h-hero">
+  <canvas class="hero__aurora" aria-hidden="true"></canvas>
   <div class="container hero__grid">
     <div>
-      <p class="hero__name"><span class="dot" aria-hidden="true"></span>Walter Sebastián Fernández</p>
-      <h1>Aprender tecnología <em>haciendo.</em></h1>
+      <p class="hero__name glass"><img src="assets/img/walter-sm.jpg" alt="" width="30" height="30"><span>Walter Sebastián Fernández</span><span class="dot" aria-hidden="true"></span></p>
+      <h1 id="h-hero">Aprender tecnología <em>haciendo.</em></h1>
       <p class="hero__roles"><span>Profesor de Informática</span><span>Tecnología</span><span>Programación</span><span>Educación Digital</span></p>
-      <p class="lead">Docente de informática con formación técnica en programación, sistemas, redes y seguridad. Acá encontrás mi trabajo profesional y una biblioteca abierta para aprender tecnología de forma autónoma.</p>
+      <p class="lead">Docente de tecnología con formación técnica superior en análisis y programación. Acá está mi trabajo profesional y una biblioteca abierta para aprender informática a tu ritmo.</p>
       <div class="hero__ctas">
-        <a class="btn btn--primary btn--lg" href="sobre-mi.html"><i data-icon="user"></i>Conocer mi perfil</a>
-        <a class="btn btn--lg" href="proyectos.html"><i data-icon="layers"></i>Ver proyectos</a>
+        <a class="btn btn--primary btn--lg" href="sobre-mi.html">Conocé mi perfil <i data-icon="arrow"></i></a>
+        <a class="btn btn--lg" href="alumnos.html"><i data-icon="grad"></i>Explorá los recursos</a>
+        <a class="btn btn--lg btn--ghost" href="proyectos.html"><i data-icon="layers"></i>Ver proyectos</a>
       </div>
-      <nav class="hero__more" aria-label="Accesos rápidos">
-        <a href="alumnos.html"><i data-icon="grad"></i>Materiales para alumnos</a>
-        <a href="materiales.html"><i data-icon="bookOpen"></i>Recursos educativos</a>
-        <a href="contacto.html"><i data-icon="mail"></i>Contacto</a>
-      </nav>
     </div>
-    <div class="terminal" role="img" aria-label="Terminal con el perfil del docente: enseña programación, redes, seguridad e inteligencia artificial con la metodología aprender haciendo.">
-      <div class="terminal__bar" aria-hidden="true"><i></i><i></i><i></i><span>~/walter — perfil</span></div>
-      <div class="terminal__body" aria-hidden="true">
-<span class="p">$</span> walter --perfil<br>
-<span class="c"># docente · tecnólogo · humano</span><br>
-<span class="k">rol</span>       = <span class="s">"Profesor de Informática"</span><br>
-<span class="k">enseña</span>    = [<span class="s">"programación"</span>, <span class="s">"redes"</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="s">"sistemas"</span>, <span class="s">"seguridad"</span>, <span class="s">"IA"</span>]<br>
-<span class="k">método</span>    = <span class="s">"problema → construir → reflexionar"</span><br>
-<span class="k">materiales</span> = <span class="s">"abiertos"</span><br><br>
-<span class="p">$</span> aprender --haciendo<span class="cursor"></span>
+    <div class="hero-stage">
+      <div class="terminal" role="img" aria-label="Fragmento de código Python de la calculadora, uno de los proyectos educativos de la plataforma.">
+        <div class="terminal__bar" aria-hidden="true"><i></i><i></i><i></i><span>calculadora.py — proyecto educativo</span></div>
+        <div class="terminal__body" aria-hidden="true">
+<span class="c"># Aprender haciendo: una función por operación</span><br>
+<span class="k">def</span> dividir(a, b):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">if</span> b == <span class="s">0</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">raise</span> ZeroDivisionError(<span class="s">"No se puede dividir por cero."</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">return</span> a / b<br><br>
+<span class="p">$</span> python calculadora.py<span class="cursor"></span>
+        </div>
       </div>
+      <div class="float-card float-card--project glass" id="hero-project"></div>
+      <div class="float-card float-card--route glass" id="hero-route"></div>
     </div>
   </div>
   <div class="container"><div class="stats" id="stats" aria-label="La plataforma en números"></div></div>
@@ -37,8 +36,8 @@
   <div class="container">
     <div class="section-head"><div><span class="eyebrow">Dos caminos</span><h2 id="h-publicos">¿Quién sos?</h2><p>La plataforma está pensada para dos públicos. Elegí tu entrada.</p></div></div>
     <div class="audience">
-      <div class="audience__card audience__card--dark">
-        <span class="eyebrow">Instituciones · Directivos · RRHH</span>
+      <div class="card card--featured audience__card">
+        <span class="eyebrow">Portfolio · Instituciones, directivos, RRHH</span>
         <h3>Conocé mi perfil profesional en 2 minutos</h3>
         <ul>
           <li><i data-icon="check"></i>Formación docente y tecnológica</li>
@@ -48,8 +47,8 @@
         </ul>
         <a class="btn btn--primary btn--lg" href="portfolio.html">Ver portfolio profesional <i data-icon="arrow"></i></a>
       </div>
-      <div class="audience__card">
-        <span class="eyebrow">Estudiantes · Autodidactas</span>
+      <div class="card audience__card" data-mode="aula">
+        <span class="eyebrow">Aula abierta · Estudiantes y autodidactas</span>
         <h3>Aprendé a tu ritmo, desde cualquier dispositivo</h3>
         <ul>
           <li><i data-icon="check"></i>Apuntes, ejercicios y código para descargar</li>
@@ -67,21 +66,21 @@
   <div class="container">
     <div class="section-head"><div><span class="eyebrow">Mi trabajo</span><h2 id="h-areas">Tres áreas, una misma forma de trabajar</h2></div></div>
     <div class="pillars">
-      <article class="pillar">
+      <article class="card pillar">
         <div class="pillar__num"><span>01</span><span>docencia</span></div>
         <h3><i data-icon="grad"></i>Docencia</h3>
         <p>Clases de informática centradas en problemas reales y materiales propios.</p>
         <ul><li>Programación y pensamiento computacional</li><li>Alfabetización y ciudadanía digital</li><li>IA educativa con criterio</li></ul>
         <a class="link-arrow" href="sobre-mi.html#metodologia">Mi metodología <i data-icon="arrow"></i></a>
       </article>
-      <article class="pillar">
+      <article class="card pillar">
         <div class="pillar__num"><span>02</span><span>tecnología</span></div>
         <h3><i data-icon="cpu"></i>Tecnología</h3>
-        <p>Formación técnica real: no enseño solo desde el manual.</p>
+        <p>Formación técnica real en análisis, programación y ciberseguridad.</p>
         <ul><li>Desarrollo de software y bases de datos</li><li>Redes, hardware y sistemas</li><li>Seguridad informática</li></ul>
         <a class="link-arrow" href="tecnologia.html">Áreas tecnológicas <i data-icon="arrow"></i></a>
       </article>
-      <article class="pillar">
+      <article class="card pillar">
         <div class="pillar__num"><span>03</span><span>proyectos</span></div>
         <h3><i data-icon="layers"></i>Proyectos</h3>
         <p>Cada tema termina en algo que funciona, documentado para que otros lo repliquen.</p>
@@ -142,10 +141,10 @@
 
 <section class="section--tight" style="padding-bottom:clamp(48px,7vw,96px)">
   <div class="container">
-    <div class="cta-band">
-      <div><h2>¿Buscás un docente de informática?</h2><p>Programación, tecnología, alfabetización digital, proyectos interdisciplinarios e IA educativa.</p></div>
+    <div class="premium"><div class="premium__inner cta-band">
+      <div><h2>¿Buscás un docente de informática?</h2><p>NTICx, programación, lenguajes tecnológicos, ciberseguridad, alfabetización digital e IA educativa. Inscripto en DGCyE, listado 108 A 2027.</p></div>
       <div class="btn-row"><a class="btn btn--primary btn--lg" href="contacto.html?motivo=Institución">Contactar</a><a class="btn btn--lg" href="portfolio.html">Ver portfolio</a></div>
       <span class="mono-deco" aria-hidden="true">&gt;_</span>
-    </div>
+    </div></div>
   </div>
 </section>

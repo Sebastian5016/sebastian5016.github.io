@@ -27,7 +27,7 @@ const DATA = ["sitio", "taxonomia", "descargas", "proyectos", "lenguajes", "mate
 const PERSON = {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "Person", "@id": BASE + "#walter", name: NAME, jobTitle: "Profesor de Informática", url: BASE, knowsAbout: ["Informática", "Programación", "Bases de datos", "Redes", "Seguridad informática", "Inteligencia artificial", "Educación digital", "Pensamiento computacional"], sameAs: [...sitio.matchAll(/(linkedin|github|youtube):\s*"(https:[^"]+)"/g)].map((m) => m[2]) },
+    { "@type": "Person", "@id": BASE + "#walter", name: NAME, jobTitle: "Profesor de Informática", image: BASE + "assets/img/walter.jpg", address: { "@type": "PostalAddress", addressLocality: "Ramos Mejía", addressRegion: "Buenos Aires", addressCountry: "AR" }, alumniOf: [{ "@type": "EducationalOrganization", name: "ISFDyT N.º 46" }, { "@type": "CollegeOrUniversity", name: "Universidad Nacional del Nordeste" }, { "@type": "CollegeOrUniversity", name: "Universidad Tecnológica Nacional" }], url: BASE, knowsAbout: ["Informática", "Programación", "Bases de datos", "Redes", "Seguridad informática", "Inteligencia artificial", "Educación digital", "Pensamiento computacional"], sameAs: [...sitio.matchAll(/(linkedin|github|youtube):\s*"(https:[^"]+)"/g)].map((m) => m[2]) },
     { "@type": "WebSite", "@id": BASE + "#web", url: BASE, name: `${NAME} · Profesor de Informática`, inLanguage: "es", publisher: { "@id": BASE + "#walter" } },
   ],
 };
@@ -50,13 +50,12 @@ ${m.sitemap === false ? '<meta name="robots" content="index, follow">\n' : ""}<l
 <meta property="og:url" content="${BASE}${file === "index.html" ? "" : file}">
 <meta property="og:image" content="${BASE}assets/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0f1113" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#07040E">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/main.css">
 <script src="assets/js/theme.js"></script>
 ${m.page === "inicio" ? `<script type="application/ld+json">${JSON.stringify(PERSON)}</script>\n` : ""}</head>`;
@@ -72,6 +71,7 @@ ${content}
 ${DATA.map((d) => `<script src="data/${d}.js"></script>`).join("\n")}
 <script src="assets/js/core.js"></script>
 <script src="assets/js/pages.js"></script>
+<script src="assets/js/fx.js"></script>
 </body>
 </html>
 `;

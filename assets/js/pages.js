@@ -23,16 +23,30 @@
       <h3 class="card__title"><a href="proyecto.html?id=${esc(p.id)}">${esc(p.titulo)}</a></h3>
       <p class="card__text">${esc(p.resumen)}</p>
       ${tags(p.tecnologias)}
-      <div class="card__foot"><span class="muted mono" style="font-size:var(--fs-xs)">${esc(areaName(p.area))}</span><span class="link-arrow">Ver proyecto ${icon("arrow")}</span></div>
+      <div class="card__foot"><span class="kind">${p.tipo === "profesional" ? "Proyecto profesional" : "Proyecto educativo"} · ${esc(p.duracion || "")}</span><span class="link-arrow">Ver proyecto ${icon("arrow")}</span></div>
     </article>`;
   }
-  function resourceCard(m) {
+  const TIEMPO = { apunte: "30 min", guia: "30 min", ejercicios: "60 min", evaluacion: "30 min", proyecto: "Proyecto", tutorial: "30 min", video: "10 min", codigo: "10 min", presentacion: "30 min", enlace: "" };
+  const tiempoDe = (m) => m.tiempo || TIEMPO[m.tipo] || "";
+  function resourceCard(m, opts = {}) {
     const fmt = (T.formatos[m.formato] || m.formato).toUpperCase();
-    return `<article class="card resource-card">
+    const t = tiempoDe(m);
+    const tecs = (m.etiquetas || []).slice(0, 3);
+    const req = m.requisitos || (m.dificultad === "inicial" ? "Ninguno." : m.dificultad === "intermedio" ? "Haber trabajado el nivel inicial del tema." : "Dominar los niveles inicial e intermedio.");
+    const files = m.archivo && fileInfo(m.archivo) ? `${esc(fileInfo(m.archivo).nombre)} · ${fmtBytes(fileInfo(m.archivo).bytes)}` : m.formato === "enlace" ? "Nada: se usa en línea." : "Todavía no disponible.";
+    const despues = m.despues ? `<a href="${esc(m.despues.url)}">${esc(m.despues.texto)}</a>` : `<a href="materiales.html?tema=${esc(m.tema)}">Más materiales de ${esc(areaName(m.tema))}</a>`;
+    return `<article class="card resource-card${opts.featured ? "" : ""}">
       <div class="resource-card__head"><span class="format" aria-label="Formato ${esc(fmt)}">${esc(fmt.slice(0, 6))}</span>
-        <div><h3 class="card__title">${esc(m.titulo)}</h3><span class="muted mono" style="font-size:var(--fs-xs)">${esc(T.tipos[m.tipo] || m.tipo)} · ${esc(areaName(m.tema))}</span></div></div>
+        <div><span class="kind">${esc(T.tipos[m.tipo] || m.tipo)} · ${esc(areaName(m.tema))}</span><h3 class="card__title">${esc(m.titulo)}</h3></div></div>
       <p class="card__text">${esc(m.descripcion)}</p>
-      <div class="tags">${tag(T.destinatarios[m.nivel] || m.nivel)}${level(m.dificultad) ? `<span class="tag">${level(m.dificultad)}</span>` : ""}</div>
+      <div class="res-facts">${level(m.dificultad)}${t ? `<span class="time">${icon("clock")}${esc(t)}</span>` : ""}${tecs.map((x) => tag(x)).join("")}</div>
+      <details class="res-guide"><summary>Antes de empezar</summary><dl>
+        <div><dt>Para quién</dt><dd>${esc(T.destinatarios[m.nivel] || m.nivel)}</dd></div>
+        <div><dt>Necesitás saber</dt><dd>${esc(req)}</dd></div>
+        ${m.aprenderas ? `<div><dt>Vas a aprender</dt><dd><ul>${m.aprenderas.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></dd></div>` : ""}
+        <div><dt>Qué descargar</dt><dd>${files}</dd></div>
+        <div><dt>Después</dt><dd>${despues}</dd></div>
+      </dl></details>
       <div class="btn-row">${m.abrir ? openBtn(m.abrir, { small: true }) : ""}${m.formato === "enlace" ? "" : downloadBtn(m.archivo, { small: true, cls: m.abrir ? "btn" : "btn btn--primary" })}</div>
     </article>`;
   }
@@ -62,16 +76,16 @@
       <div class="card__kicker">${tag(areaName(r.area), "tag--accent")}${status(r.estado)}</div>
       <h3 class="card__title"><a href="ruta.html?id=${esc(r.id)}">${esc(r.titulo)}</a></h3>
       <p class="card__text">${esc(r.descripcion)}</p>
-      <div class="mini-route" aria-hidden="true">${r.niveles.map((_, i) => `<i class="${done.has(i) ? "on" : ""}"></i>`).join("")}</div>
+      <div class="mini-route" aria-hidden="true">${r.niveles.map((_, i) => `<i class="${done.has(i) ? "on" : ""}" style="--i:${i}"></i>`).join("")}</div>
       <div class="progress-label"><span>${r.niveles.length} niveles · ${esc(r.duracion)}</span><span>${pct}% completado</span></div>
       <div class="card__foot">${level(r.nivel)}<span class="link-arrow">${pct > 0 ? "Continuar" : "Empezar"} ${icon("arrow")}</span></div>
     </article>`;
   }
   function timeline(items) {
     const lbl = { formacion: "Formación", experiencia: "Experiencia", actual: "Actualidad" };
-    return `<ol class="timeline">${items.map((t) => `<li class="timeline__item" data-type="${esc(t.tipo)}"><div class="timeline__type"><span>${esc(t.etiqueta || lbl[t.tipo])}</span>${t.periodo ? `<span>· ${esc(t.periodo)}</span>` : ""}</div><h3>${esc(t.titulo)}</h3><p>${esc(t.texto)}</p></li>`).join("")}</ol>`;
+    return `<ol class="timeline">${items.map((t) => `<li class="timeline__item" data-type="${esc(t.tipo)}"><div class="timeline__type"><span>${esc(t.etiqueta || lbl[t.tipo])}</span>${t.periodo ? `<span>· ${esc(t.periodo)}</span>` : ""}</div><h3>${esc(t.titulo)}</h3>${t.lugar ? `<p class="timeline__place">${esc(t.lugar)}</p>` : ""}${t.texto ? `<p>${esc(t.texto)}</p>` : ""}</li>`).join("")}</ol>`;
   }
-  const timelineLegend = `<div class="legend" aria-hidden="true"><span><i class="sq"></i>Formación</span><span><i></i>Experiencia</span><span><i class="fill"></i>Actualidad</span></div>`;
+  const timelineLegend = `<div class="legend" aria-hidden="true"><span><i class="sq"></i>Formación</span><span><i></i>Experiencia</span><span><i class="fill"></i>Hoy</span></div>`;
   const methodSteps = (row = true) => `<ol class="steps${row ? " steps--row" : ""}">${S.metodologia.map((m) => `<li class="step"><strong>${esc(m.titulo)}</strong><p>${esc(m.texto)}</p></li>`).join("")}</ol>`;
   const fileRow = (path) => {
     const f = fileInfo(path);
@@ -87,13 +101,31 @@
       [WF.materiales.length, "materiales educativos"],
       [WF.lenguajes.length, "lenguajes de programación"],
       [nFiles, "archivos descargables"],
-    ].map(([n, t]) => `<div class="stat"><strong>${n}</strong><span>${t}</span></div>`).join(""));
+    ].map(([n, t]) => `<div class="stat"><strong class="num-grad" data-countup="${n}">${n}</strong><span>${t}</span></div>`).join(""));
     $$("[data-count]").forEach((el) => {
       const k = el.dataset.count;
       const v = { proyectos: WF.proyectos.length, materiales: WF.materiales.length, lenguajes: WF.lenguajes.length, rutas: WF.rutas.length, blog: WF.blog.length, ia: WF.secciones.iaTemas.length, tecnologia: WF.secciones.tecnologiaAreas.length, archivos: nFiles }[k];
       el.textContent = v ?? "";
     });
-    mount("#home-projects", WF.proyectos.filter((p) => p.destacado).slice(0, 3).map(projectCard).join(""));
+    // Escenario del hero: proyecto real destacado + ruta con progreso del visitante
+    const star = WF.proyectos.find((p) => p.tipo === "profesional" && p.destacado) || WF.proyectos[0];
+    mount("#hero-project", `<small>Proyecto propio</small><strong><a href="proyecto.html?id=${esc(star.id)}">${esc(star.titulo)}</a></strong><div class="tags">${status(star.estado)}${tag(areaName(star.area))}</div>`);
+    const r = WF.rutas[0], pct = WF.ProgressStore.percent(r.id, r.niveles.length);
+    mount("#hero-route", `<small>Ruta · ${r.niveles.length} niveles</small><strong><a href="ruta.html?id=${esc(r.id)}">${esc(r.titulo)}</a></strong><div class="progress-label"><span>${pct ? "Tu progreso" : "Empezá hoy"}</span><span>${pct}%</span></div><div class="progress"><div class="progress__bar" style="--p-val:${pct / 100}"></div></div>`);
+    // Proyecto destacado (premium) + dos más
+    const feats = WF.proyectos.filter((p) => p.destacado);
+    const main = feats.find((p) => p.tipo === "profesional") || feats[0];
+    const rest = feats.filter((p) => p !== main && p.tipo !== "profesional").slice(0, 3);
+    mount("#home-projects", `<div class="premium" style="grid-column:1/-1"><article class="card" style="padding:clamp(24px,3.5vw,44px)"><div class="split" style="align-items:center">
+      <div><span class="premium-label">Proyecto destacado</span><h3 style="font-size:clamp(1.6rem,1.2rem + 1.4vw,2.4rem);margin:18px 0 12px"><a href="proyecto.html?id=${esc(main.id)}" style="color:inherit;text-decoration:none">${esc(main.titulo)}</a></h3><p class="lead" style="font-size:var(--fs-md)">${esc(main.resumen)}</p>
+      <div class="tags" style="margin:20px 0 28px">${status(main.estado)}${main.tecnologias.map((t) => tag(t)).join("")}</div>
+      <a class="btn btn--primary" href="proyecto.html?id=${esc(main.id)}" style="position:relative;z-index:2">Ver proyecto ${icon("arrow")}</a></div>
+      <dl class="meta-strip" style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+        <div><dt>Problema</dt><dd style="font-weight:400;color:var(--ink-2)">${esc(main.problema.split(". ")[0])}.</dd></div>
+        <div><dt>Destinatarios</dt><dd>${esc(T.destinatarios[main.destinatario] || "")}</dd></div>
+        <div><dt>Duración</dt><dd class="mono">${esc(main.duracion)}</dd></div>
+        <div><dt>Área</dt><dd>${esc(areaName(main.area))}</dd></div>
+      </dl></div></article></div>` + rest.map(projectCard).join(""));
     mount("#home-routes", WF.rutas.slice(0, 3).map(routeCard).join(""));
     mount("#home-posts", [...WF.blog].sort((a, b) => b.fecha.localeCompare(a.fecha)).slice(0, 3).map(postCard).join(""));
   }
@@ -101,6 +133,9 @@
   /* ============================= SOBRE MÍ ============================= */
   function sobreMi() {
     mount("#perfil-humano", S.perfilHumano.map((p) => `<p>${esc(p)}</p>`).join(""));
+    mount("#portrait", `<div class="portrait"><img src="${esc(S.foto)}" alt="${esc(S.fotoAlt)}" width="640" height="640"></div>`);
+    mount("#actualmente", S.actualmente.map((a) => `<li><strong>${esc(a.escuela)} · ${esc(a.lugar)}</strong><span>${esc(a.materia)} — ${esc(a.cursos)}</span></li>`).join(""));
+    mount("#enfoque", S.enfoque.map((e) => `<li>${icon("heart")}${esc(e)}</li>`).join(""));
     mount("#timeline", timelineLegend + timeline(S.lineaTemporal));
     mount("#especializacion", S.especializacion.map((e) => `<div class="card"><div class="card__icon">${icon(e.icono)}</div><h3 class="card__title">${esc(e.titulo)}</h3><p class="card__text" style="margin:0">${esc(e.texto)}</p></div>`).join(""));
     mount("#intereses", S.intereses.map((i) => `<span class="chip" style="cursor:default">${esc(i)}</span>`).join(""));
@@ -119,8 +154,11 @@
     mount("#pf-metodo", methodSteps());
     mount("#pf-proyectos", WF.proyectos.filter((p) => p.estado === "publicado").slice(0, 6).map((p) => `<a class="card card--link" href="proyecto.html?id=${esc(p.id)}" style="text-decoration:none;color:inherit"><div class="card__kicker"><span class="tag tag--accent">${esc(areaName(p.area))}</span>${level(p.nivel)}</div><h3 class="card__title">${esc(p.titulo)}</h3><p class="card__text" style="margin:0">${esc(p.resumen)}</p></a>`).join(""));
     const c = S.contacto;
+    mount("#pf-actual", S.actualmente.map((a) => `<li><strong>${esc(a.escuela)} · ${esc(a.lugar)}</strong><span>${esc(a.materia)} — ${esc(a.cursos)}</span></li>`).join(""));
     mount("#pf-datos", `<dl class="kv">
-      <dt>Perfil</dt><dd>${esc(S.roles.join(" · "))}</dd>
+      <dt>Niveles</dt><dd>${esc(S.niveles)}</dd>
+      <dt>Inscripción</dt><dd>${esc(S.inscripcion)}</dd>
+      <dt>Idiomas</dt><dd>${esc(S.idiomas.join(" · "))}</dd>
       <dt>Ubicación</dt><dd>${esc(c.ubicacion)}</dd>
       <dt>Disponibilidad</dt><dd>${esc(c.disponibilidad)}</dd>
       ${c.email ? `<dt>Correo</dt><dd><a href="mailto:${esc(c.email)}">${esc(c.email)}</a></dd>` : ""}
@@ -134,17 +172,18 @@
   /* ============================ PROYECTOS ============================= */
   function proyectos() {
     const p = params();
-    const state = { area: p.get("area") || "", nivel: p.get("nivel") || "", estado: p.get("estado") || "", q: p.get("q") || "" };
+    const state = { tipo: p.get("tipo") || "", area: p.get("area") || "", nivel: p.get("nivel") || "", estado: p.get("estado") || "", q: p.get("q") || "" };
     const areas = [...new Set(WF.proyectos.map((x) => x.area))];
     mount("#proj-filters", `
       <div class="field" style="flex:1 1 240px"><label for="pq">Buscar</label><div class="input-icon">${icon("search")}<input id="pq" class="input" type="search" placeholder="Nombre, tecnología, concepto…" value="${esc(state.q)}"></div></div>
       <div class="field" style="flex:0 1 180px"><label for="pn">Nivel</label><select id="pn" class="select"><option value="">Todos</option>${Object.entries(T.niveles).map(([k, v]) => `<option value="${k}"${state.nivel === k ? " selected" : ""}>${v.nombre}</option>`).join("")}</select></div>
       <div class="field" style="flex:0 1 180px"><label for="pe">Estado</label><select id="pe" class="select"><option value="">Todos</option>${Object.entries(T.estados).map(([k, v]) => `<option value="${k}"${state.estado === k ? " selected" : ""}>${v}</option>`).join("")}</select></div>
+      <div class="field" style="flex:1 1 100%"><span class="label" id="pt-l">Tipo</span><div class="chip-group" role="group" aria-labelledby="pt-l">${[["", "Todos"], ["profesional", "Profesionales · lo que desarrollo"], ["educativo", "Educativos · para hacer en clase"]].map(([k, t]) => `<button class="chip" type="button" data-tipo="${k}" aria-pressed="${state.tipo === k}">${t} <span class="count">${k ? WF.proyectos.filter((x) => (x.tipo || "educativo") === k).length : WF.proyectos.length}</span></button>`).join("")}</div></div>
       <div class="field" style="flex:1 1 100%"><span class="label" id="pa-l">Área</span><div class="chip-group" role="group" aria-labelledby="pa-l"><button class="chip" type="button" data-area="" aria-pressed="${!state.area}">Todas</button>${areas.map((a) => `<button class="chip" type="button" data-area="${a}" aria-pressed="${state.area === a}">${esc(areaName(a))} <span class="count">${WF.proyectos.filter((x) => x.area === a).length}</span></button>`).join("")}</div></div>`);
     const draw = () => {
       const q = norm(state.q);
-      const list = WF.proyectos.filter((x) => (!state.area || x.area === state.area) && (!state.nivel || x.nivel === state.nivel) && (!state.estado || x.estado === state.estado) && (!q || norm([x.titulo, x.resumen, ...x.tecnologias, ...x.conceptos, areaName(x.area)].join(" ")).includes(q)));
-      mount("#proj-count", `<span>${list.length} de ${WF.proyectos.length} proyectos</span>${state.area || state.nivel || state.estado || state.q ? `<button class="btn btn--ghost btn--sm" type="button" data-clear>${icon("x")} Limpiar filtros</button>` : ""}`);
+      const list = WF.proyectos.filter((x) => (!state.tipo || (x.tipo || "educativo") === state.tipo) && (!state.area || x.area === state.area) && (!state.nivel || x.nivel === state.nivel) && (!state.estado || x.estado === state.estado) && (!q || norm([x.titulo, x.resumen, ...x.tecnologias, ...x.conceptos, areaName(x.area)].join(" ")).includes(q)));
+      mount("#proj-count", `<span>${list.length} de ${WF.proyectos.length} proyectos</span>${state.tipo || state.area || state.nivel || state.estado || state.q ? `<button class="btn btn--ghost btn--sm" type="button" data-clear>${icon("x")} Limpiar filtros</button>` : ""}`);
       mount("#proj-grid", list.length ? list.map(projectCard).join("") : `<div class="empty" style="grid-column:1/-1">${icon("search")}<strong>No hay proyectos con esos filtros</strong>Probá quitar alguno.</div>`);
       const u = new URLSearchParams(Object.entries(state).filter(([, v]) => v));
       history.replaceState(null, "", location.pathname + (u.toString() ? "?" + u : ""));
@@ -152,7 +191,7 @@
     $("#pq").addEventListener("input", (e) => { state.q = e.target.value; draw(); });
     $("#pn").addEventListener("change", (e) => { state.nivel = e.target.value; draw(); });
     $("#pe").addEventListener("change", (e) => { state.estado = e.target.value; draw(); });
-    $("#proj-filters").addEventListener("click", (e) => { const b = e.target.closest("[data-area]"); if (!b) return; state.area = b.dataset.area; $$("[data-area]").forEach((x) => x.setAttribute("aria-pressed", x === b)); draw(); });
+    $("#proj-filters").addEventListener("click", (e) => { const tb = e.target.closest("[data-tipo]"); if (tb) { state.tipo = tb.dataset.tipo; $$("[data-tipo]").forEach((x) => x.setAttribute("aria-pressed", x === tb)); draw(); return; } const b = e.target.closest("[data-area]"); if (!b) return; state.area = b.dataset.area; $$("[data-area]").forEach((x) => x.setAttribute("aria-pressed", x === b)); draw(); });
     $("#proj-count").addEventListener("click", (e) => { if (e.target.closest("[data-clear]")) { location.href = "proyectos.html"; } });
     draw();
   }
@@ -175,8 +214,8 @@
     const ghPanel = (gh.repo || demo) ? `<div class="github-panel"><div class="github-panel__head">${icon("github")}<strong>${gh.repo ? esc(gh.repo.replace("https://github.com/", "")) : "Código y demo"}</strong></div><div class="github-panel__body">
         <p style="margin:0;font-size:var(--fs-sm)"><strong>Objetivo educativo:</strong> ${esc(p.objetivo)}</p>${tags(p.tecnologias)}
         <div class="github-panel__links">${gh.repo ? `<a class="btn btn--sm" href="${esc(gh.repo)}" target="_blank" rel="noopener">${icon("code")} Código fuente</a>` : ""}${gh.readme ? `<a class="btn btn--sm" href="${esc(gh.readme)}" target="_blank" rel="noopener">${icon("file")} README</a>` : ""}${demo ? `<a class="btn btn--sm btn--primary" href="${esc(demo)}"${extAttrs(demo)}>${icon("play")} Ver demo</a>` : ""}</div></div></div>` : "";
-    B("codigo", "Código", (p.codigo || []).map((c) => codeBlock(c)).join("") + ghPanel);
-    const imgs = (p.imagenes || []).map((im) => `<figure><div class="figure-frame" style="aspect-ratio:auto;background:#f6f5f1"><img src="${esc(im.src)}" alt="${esc(im.alt)}" loading="lazy" width="640" height="380"></div><figcaption>${esc(im.caption || "")}</figcaption></figure>`).join("");
+    B("codigo", "Código", ((p.codigo || []).map((c) => codeBlock(c)).join("") + ghPanel) || `<div class="notice">${icon("info")}<p>Este proyecto no se basa en código: su desarrollo está en los materiales y las actividades.</p></div>`);
+    const imgs = (p.imagenes || []).map((im) => `<figure><div class="figure-frame"><img src="${esc(im.src)}" alt="${esc(im.alt)}" loading="lazy" width="640" height="380"></div><figcaption>${esc(im.caption || "")}</figcaption></figure>`).join("");
     const out = p.salida ? `<figure><div class="terminal"><div class="terminal__bar"><i></i><i></i><i></i><span>salida del programa</span></div><div class="terminal__body"><pre style="margin:0;font:inherit;white-space:pre-wrap">${esc(p.salida)}</pre></div></div><figcaption>Ejecución de ejemplo</figcaption></figure>` : "";
     const live = demo && !isExternal(demo) ? `<figure><div class="embed" style="aspect-ratio:4/3"><iframe src="${esc(demo)}" title="Demo en vivo: ${esc(p.titulo)}" loading="lazy" sandbox="allow-scripts"></iframe></div><figcaption>Demo en vivo · podés usarla acá mismo</figcaption></figure>` : "";
     B("imagenes", "Imágenes y capturas", (imgs || out || live) ? `<div class="figure-grid" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,${live ? 420 : 300}px),1fr))">${imgs}${out}${live}</div>` : `<div class="notice">${icon("image")}<p>Las capturas de este proyecto se publicarán cuando esté terminado.</p></div>`);
@@ -184,7 +223,7 @@
     B("aprendimos", "Qué aprendimos", p.aprendimos.length ? `<ul class="check-list">${p.aprendimos.map((a) => `<li>${icon("lightbulb")}${esc(a)}</li>`).join("")}</ul>` : `<p class="muted">Se completará al finalizar el proyecto con el curso.</p>`);
     const a = p.actividad || {};
     B("actividad", "Actividad propuesta", `<div class="callout"><div class="callout__title">${icon("flag")}${esc(a.consigna || "")}</div><ol>${(a.pasos || []).map((s) => `<li>${esc(s)}</li>`).join("")}</ol>${a.entrega ? `<p><strong>Entrega:</strong> ${esc(a.entrega)}</p>` : ""}</div>`);
-    B("descargas", "Material descargable", `<ul class="simple-list">${(p.descargas || []).map(fileRow).join("")}</ul>`);
+    B("descargas", "Material descargable", (p.descargas || []).length ? `<ul class="simple-list">${p.descargas.map(fileRow).join("")}</ul>` : `<div class="notice">${icon("clock")}<p>El material descargable de este proyecto se publicará próximamente.</p></div>`);
     B("mejoras", "Posibles mejoras", `<ul class="check-list">${p.mejoras.map((m) => `<li>${icon("trending")}${esc(m)}</li>`).join("")}</ul>`);
 
     const lang = p.relacionados && byId(WF.lenguajes, p.relacionados.lenguaje);
@@ -199,7 +238,7 @@
     mount("#project", `
     <header class="page-head"><div class="container">
       ${autoCrumb(p.titulo)}
-      <div class="tags" style="margin-bottom:16px">${tag(areaName(p.area), "tag--accent")}${status(p.estado)}<span class="tag">${level(p.nivel)}</span></div>
+      <div class="tags" style="margin-bottom:16px"><span class="tag tag--accent">${p.tipo === "profesional" ? "Proyecto profesional" : "Proyecto educativo"}</span>${tag(areaName(p.area))}${status(p.estado)}<span class="tag">${level(p.nivel)}</span></div>
       <h1>${esc(p.titulo)}</h1>
       <p class="lead">${esc(p.resumen)}</p>
       <div class="page-head__meta">
@@ -314,7 +353,9 @@
       const list = WF.materiales.filter((m) => matches(m));
       const active = F.filter((f) => state[f.k]).length + (state.q ? 1 : 0);
       mount("#mat-count", `<span>${list.length} recurso${list.length === 1 ? "" : "s"}${active ? ` · ${active} filtro${active > 1 ? "s" : ""} activo${active > 1 ? "s" : ""}` : ""}</span>${active ? `<button class="btn btn--ghost btn--sm" type="button" data-clear>${icon("x")} Limpiar filtros</button>` : ""}`);
-      mount("#mat-grid", list.length ? list.map(resourceCard).join("") : `<div class="empty" style="grid-column:1/-1">${icon("search")}<strong>No hay materiales con esos filtros</strong>Probá con menos filtros o usá la <a href="#" data-search-open>búsqueda global</a>.</div>`);
+      const rec = WF.materiales.find((m) => m.id === "ap-intro-prog");
+      mount("#mat-featured", !active && rec ? `<div class="premium"><div class="premium__inner" style="padding:clamp(20px,3vw,32px);display:grid;gap:16px"><span class="premium-label">Recurso recomendado para empezar</span><div class="split" style="gap:20px;align-items:center"><div><h2 style="font-size:clamp(1.4rem,1.1rem + 1vw,1.9rem);margin:0 0 8px">${esc(rec.titulo)}</h2><p class="muted" style="margin:0">${esc(rec.descripcion)}</p></div><div class="btn-row" style="justify-content:flex-end">${openBtn(rec.abrir, { label: "Empezar a leer", cls: "btn btn--primary" })}${downloadBtn(rec.archivo)}</div></div></div></div>` : "");
+      mount("#mat-grid", list.length ? list.map((m) => resourceCard(m)).join("") : `<div class="empty" style="grid-column:1/-1">${icon("search")}<strong>No hay materiales con esos filtros</strong>Probá con menos filtros o usá la <a href="#" data-search-open>búsqueda global</a>.</div>`);
       const ft = $("#filters-toggle"); if (ft) ft.querySelector("span").textContent = active ? `Filtros (${active})` : "Filtros";
       const u = new URLSearchParams(Object.entries(state).filter(([, v]) => v));
       history.replaceState(null, "", location.pathname + (u.toString() ? "?" + u : ""));
@@ -397,7 +438,7 @@
         ${autoCrumb(r.titulo)}
         <div class="tags" style="margin-bottom:16px">${tag(areaName(r.area), "tag--accent")}${status(r.estado)}<span class="tag">${level(r.nivel)}</span><span class="tag">${icon("clock")}${esc(r.duracion)}</span></div>
         <h1>${esc(r.titulo)}</h1><p class="lead">${esc(r.descripcion)}</p>
-        <div style="max-width:560px;margin-top:28px"><div class="progress-label"><span>Tu progreso: ${done.size} de ${r.niveles.length} niveles</span><span>${pct}%</span></div><div class="progress" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100" aria-label="Progreso de la ruta"><div class="progress__bar" style="width:${pct}%"></div></div>
+        <div style="max-width:560px;margin-top:28px"><div class="progress-label"><span>Tu progreso: ${done.size} de ${r.niveles.length} niveles</span><span>${pct}%</span></div><div class="progress" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100" aria-label="Progreso de la ruta"><div class="progress__bar" style="--p-val:${pct / 100}"></div></div>
         <p class="muted" style="font-size:var(--fs-xs);margin-top:10px">${icon("info").replace("<svg", '<svg style="width:14px;height:14px;display:inline;vertical-align:-2px"')} El progreso se guarda en este navegador. ${done.size ? `<button class="btn btn--ghost btn--sm" type="button" data-reset>Reiniciar</button>` : ""}</p></div>
       </div></header>
       <div class="container container--narrow section--tight">
@@ -468,7 +509,7 @@
       const upd = () => { const all = $$("input", cl), n = all.filter((c) => c.checked).length; mount("#verify-score", n === all.length ? `${icon("checkCircle")} <strong>¡Listo!</strong> Podés usar la información con confianza razonable.` : `${n} de ${all.length} comprobaciones realizadas.`); };
       cl.addEventListener("change", upd); upd();
     }
-    mount("#ia-materiales", WF.materiales.filter((m) => m.tema === "ia").map(resourceCard).join(""));
+    mount("#ia-materiales", WF.materiales.filter((m) => m.tema === "ia").map((m) => resourceCard(m)).join(""));
   }
 
   /* ============================= TECNOLOGÍA ============================= */
@@ -529,7 +570,7 @@
         <hr>
         <div class="share" aria-label="Compartir"><strong style="font-size:var(--fs-sm);margin-right:6px">${icon("share").replace("<svg", '<svg style="width:16px;height:16px;display:inline;vertical-align:-3px"')} Compartir:</strong>
           ${navigator.share ? `<button class="btn btn--sm" type="button" data-share>${icon("share")} Compartir…</button>` : ""}
-          <a class="btn btn--sm" href="https://wa.me/?text=${enc(a.titulo + " " + url)}" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn btn--sm btn--whatsapp" href="https://wa.me/?text=${enc(a.titulo + " " + url)}" target="_blank" rel="noopener">WhatsApp</a>
           <a class="btn btn--sm" href="https://www.linkedin.com/sharing/share-offsite/?url=${enc(url)}" target="_blank" rel="noopener">${icon("linkedin")} LinkedIn</a>
           <a class="btn btn--sm" href="mailto:?subject=${enc(a.titulo)}&body=${enc(url)}">${icon("mail")} Correo</a>
           <button class="btn btn--sm" type="button" data-copylink>${icon("link")} Copiar enlace</button>
@@ -579,11 +620,12 @@
     const c = S.contacto;
     const ch = [
       c.email && { href: `mailto:${c.email}`, i: "mail", t: "Correo profesional", s: c.email },
+      S.redes.whatsapp && { href: `https://wa.me/${S.redes.whatsapp}`, i: "whatsapp", t: "WhatsApp", s: "Escribime por WhatsApp", cls: "channel--whatsapp" },
       S.redes.linkedin && { href: S.redes.linkedin, i: "linkedin", t: "LinkedIn", s: S.redes.linkedin.replace(/^https?:\/\/(www\.)?/, "") },
       S.redes.github && { href: S.redes.github, i: "github", t: "GitHub", s: S.redes.github.replace(/^https?:\/\//, "") },
       S.redes.youtube && { href: S.redes.youtube, i: "youtube", t: "YouTube", s: "Canal de videos" },
     ].filter(Boolean);
-    mount("#channels", ch.map((x) => `<a class="channel" href="${esc(x.href)}"${extAttrs(x.href)}>${icon(x.i)}<span><strong>${esc(x.t)}</strong><small>${esc(x.s)}</small></span></a>`).join("") || `<p class="muted">Usá el formulario para escribirme.</p>`);
+    mount("#channels", ch.map((x) => `<a class="channel ${x.cls || ""}" href="${esc(x.href)}"${extAttrs(x.href)}>${icon(x.i)}<span><strong>${esc(x.t)}</strong><small>${esc(x.s)}</small></span></a>`).join("") || `<p class="muted">Usá el formulario para escribirme.</p>`);
     mount("#availability", esc(c.disponibilidad));
     const form = $("#contact-form"); if (!form) return;
     const motivo = params().get("motivo"); if (motivo && form.motivo) form.motivo.value = motivo;
@@ -615,23 +657,36 @@
 
   /* ============================== BUSCAR ============================== */
   function buscar() {
-    const input = $("#q");
-    let type = "";
-    input.value = params().get("q") || "";
+    const input = $("#q"), P = params();
+    const F = { tema: P.get("tema") || "", nivel: P.get("nivel") || "", tec: P.get("tec") || "", tipo: P.get("tipo") || "", dif: P.get("dif") || "" };
+    input.value = P.get("q") || "";
+    const all = WF.buildIndex();
+    const uniq = (arr) => [...new Set(arr.filter(Boolean))].sort((a, b) => String(a).localeCompare(String(b), "es"));
+    const OPTS = {
+      tema: uniq(all.map((i) => i.area)).filter((k) => T.areas[k]).map((k) => [k, T.areas[k].nombre]),
+      nivel: uniq(all.map((i) => i.dest)).filter((k) => T.destinatarios[k]).map((k) => [k, T.destinatarios[k]]),
+      tec: uniq(all.flatMap((i) => i.tecs || [])).map((k) => [k, k]),
+      tipo: uniq(all.map((i) => i.tipo)).map((k) => [k, k]),
+      dif: Object.entries(T.niveles).map(([k, v]) => [k, v.nombre]),
+    };
+    const LBL = { tema: "Tema", nivel: "Nivel", tec: "Tecnología", tipo: "Tipo", dif: "Dificultad" };
+    mount("#search-filters", Object.keys(F).map((k) => `<div class="field"><label for="sf-${k}">${LBL[k]}</label><select id="sf-${k}" class="select" data-f="${k}"><option value="">Todos</option>${OPTS[k].map(([v, t]) => `<option value="${esc(v)}"${F[k] === v ? " selected" : ""}>${esc(t)}</option>`).join("")}</select></div>`).join(""));
+    const pass = (it) => (!F.tema || it.area === F.tema) && (!F.nivel || it.dest === F.nivel) && (!F.tec || (it.tecs || []).includes(F.tec)) && (!F.tipo || it.tipo === F.tipo) && (!F.dif || it.dificultad === F.dif);
+    const anyF = () => Object.values(F).some(Boolean);
     const draw = () => {
       const q = input.value.trim();
-      history.replaceState(null, "", q ? `?q=${encodeURIComponent(q)}` : location.pathname);
-      if (!q) { mount("#search-types", ""); mount("#search-results-page", `<div class="search-suggest" style="padding:0"><p class="muted mono" style="font-size:var(--fs-xs)">Búsquedas frecuentes:</p><div class="chip-group">${["Python", "SQL", "redes", "IA", "Word", "programación", "seguridad", "Arduino", "HTML", "Excel"].map((s) => `<button class="chip" type="button" data-s="${s}">${s}</button>`).join("")}</div></div>`); return; }
-      const res = WF.search(q, 200);
-      const types = [...new Set(res.map((r) => r.tipo))];
-      if (type && !types.includes(type)) type = "";
-      mount("#search-types", res.length ? `<button class="chip" type="button" data-t="" aria-pressed="${!type}">Todo <span class="count">${res.length}</span></button>` + types.map((t) => `<button class="chip" type="button" data-t="${esc(t)}" aria-pressed="${type === t}">${esc(t)} <span class="count">${res.filter((r) => r.tipo === t).length}</span></button>`).join("") : "");
-      const list = res.filter((r) => !type || r.tipo === type);
-      mount("#search-results-page", list.length ? `<p class="results-meta">${list.length} resultado${list.length === 1 ? "" : "s"} para “${esc(q)}”</p><div style="display:grid;gap:4px">${list.map((it) => `<a class="search-result" href="${esc(it.url)}"${extAttrs(it.url)} style="border:1px solid var(--line);background:var(--surface)"><span class="search-result__icon">${icon(it.icono)}</span><div><strong>${WF.markTerms(it.titulo, q)}</strong><small>${esc(it.tipo)} · ${esc(it.texto)}</small></div>${icon("arrow").replace("<svg", '<svg style="width:16px;height:16px;color:var(--ink-3);flex-shrink:0"')}</a>`).join("")}</div>` : `<div class="empty">${icon("search")}<strong>Sin resultados para “${esc(q)}”</strong>Probá con otra palabra, por ejemplo “programación” o “redes”.</div>`);
+      const u = new URLSearchParams(Object.entries({ q, ...F }).filter(([, v]) => v));
+      history.replaceState(null, "", location.pathname + (u.toString() ? "?" + u : ""));
+      if (!q && !anyF()) { mount("#search-results-page", `<div class="search-suggest" style="padding:0"><p class="muted mono" style="font-size:var(--fs-xs)">Búsquedas frecuentes:</p><div class="chip-group">${["Python", "SQL", "redes", "IA", "Word", "programación", "seguridad", "Arduino", "HTML", "Excel"].map((x) => `<button class="chip" type="button" data-s="${x}">${x}</button>`).join("")}</div></div>`); return; }
+      const res = (q ? WF.search(q, 300) : all).filter(pass);
+      mount("#search-results-page", res.length ? `<p class="results-meta"><span>${res.length} resultado${res.length === 1 ? "" : "s"}${q ? ` para “${esc(q)}”` : ""}</span>${anyF() ? `<button class="btn btn--ghost btn--sm" type="button" data-clear>${icon("x")} Quitar filtros</button>` : ""}</p><div style="display:grid;gap:6px">${res.slice(0, 120).map((it) => `<a class="search-result" href="${esc(it.url)}"${extAttrs(it.url)} style="border:1px solid var(--line);background:var(--surface)"><span class="search-result__icon">${icon(it.icono)}</span><div><strong>${q ? WF.markTerms(it.titulo, q) : esc(it.titulo)}</strong><small>${esc(it.tipo)}${it.dificultad && T.niveles[it.dificultad] ? " · " + T.niveles[it.dificultad].nombre : ""} · ${esc(it.texto)}</small></div>${icon("arrow").replace("<svg", '<svg style="width:16px;height:16px;color:var(--ink-3);flex-shrink:0"')}</a>`).join("")}</div>` : `<div class="empty">${icon("search")}<strong>Sin resultados${q ? ` para “${esc(q)}”` : ""}</strong>Probá con otra palabra o quitá algún filtro.</div>`);
     };
     input.addEventListener("input", draw);
-    $("#search-types").addEventListener("click", (e) => { const b = e.target.closest("[data-t]"); if (b) { type = b.dataset.t; draw(); } });
-    $("#search-results-page").addEventListener("click", (e) => { const b = e.target.closest("[data-s]"); if (b) { input.value = b.dataset.s; draw(); } });
+    $("#search-filters").addEventListener("change", (e) => { const s2 = e.target.closest("[data-f]"); if (s2) { F[s2.dataset.f] = s2.value; draw(); } });
+    $("#search-results-page").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-s]"); if (b) { input.value = b.dataset.s; draw(); }
+      if (e.target.closest("[data-clear]")) { Object.keys(F).forEach((k) => (F[k] = "")); $$("#search-filters select").forEach((x) => (x.value = "")); draw(); }
+    });
     draw(); input.focus();
   }
 

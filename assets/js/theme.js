@@ -1,7 +1,4 @@
-/* Se carga en <head> para aplicar el tema antes de pintar (evita parpadeo). */
+/* Se carga en <head>: aplica el "modo lectura" (claro) antes de pintar, si el visitante lo eligió. */
 (function () {
-  try {
-    var t = localStorage.getItem("wf.theme");
-    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
-  } catch (e) {}
+  try { if (localStorage.getItem("wf.theme") === "light") document.documentElement.setAttribute("data-theme", "light"); } catch (e) {}
 })();

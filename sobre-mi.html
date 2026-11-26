@@ -16,13 +16,12 @@
 <meta property="og:url" content="https://sebastian5016.github.io/sobre-mi.html">
 <meta property="og:image" content="https://sebastian5016.github.io/assets/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0f1113" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#07040E">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/main.css">
 <script src="assets/js/theme.js"></script>
 </head>
@@ -35,20 +34,26 @@
   <div class="container">
     <div data-crumb></div>
     <span class="eyebrow">Sobre mí</span>
-    <h1>Docente de informática con los pies en la tecnología real.</h1>
-    <p class="lead">Combino la formación pedagógica con experiencia técnica en sistemas, programación y seguridad informática. Enseño para que cada estudiante pueda construir, entender y decidir con criterio.</p>
+    <h1>Docente de tecnología, con oficio técnico.</h1>
+    <p class="lead">Técnico superior en análisis y programación, diplomado en ciberseguridad y con años de experiencia en instrucción y coordinación educativa. Enseño acompañando el ritmo de cada estudiante.</p>
   </div>
 </header>
 
 <section class="section">
   <div class="container split">
     <div class="prose">
+      <div id="portrait" style="margin-bottom:32px"></div>
       <span class="eyebrow">Perfil</span>
       <h2 style="margin-top:0">Profesional, técnico y humano</h2>
       <div id="perfil-humano"></div>
       <div class="btn-row" style="margin-top:24px"><a class="btn btn--primary" href="portfolio.html"><i data-icon="briefcase"></i>Portfolio profesional</a><a class="btn" href="contacto.html"><i data-icon="mail"></i>Escribirme</a></div>
     </div>
     <div>
+      <span class="eyebrow">Actualmente</span>
+      <h2 style="margin-top:0">Dónde enseño hoy</h2>
+      <ul class="now-list" id="actualmente" style="margin-bottom:48px"></ul>
+      <span class="eyebrow">Enfoque docente</span>
+      <ul class="check-list" id="enfoque" style="margin-bottom:48px"></ul>
       <span class="eyebrow">Recorrido</span>
       <h2 style="margin-top:0">Formación y experiencia</h2>
       <div id="timeline"></div>
@@ -92,5 +97,6 @@
 <script src="data/secciones.js"></script>
 <script src="assets/js/core.js"></script>
 <script src="assets/js/pages.js"></script>
+<script src="assets/js/fx.js"></script>
 </body>
 </html>

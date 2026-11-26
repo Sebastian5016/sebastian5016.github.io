@@ -67,15 +67,14 @@
 - **Pie de página** con el mapa completo del sitio.
 - En celular: menú a pantalla completa, botones de 48 px mínimo.
 
-## 4. Diseño visual
+## 4. Diseño visual (v2 · premium)
 
-- **Concepto:** *cuaderno técnico*. Fondo papel cálido, tinta oscura, un solo color de acento (verde azulado "terminal"). Profesional, tecnológico y humano.
-- **Tipografía:** IBM Plex Sans (texto) + IBM Plex Mono (etiquetas, código, metadatos). Diseñada para pantallas, excelente legibilidad, carácter técnico.
-- **Firma visual:** el cursor `>_` y etiquetas en monoespaciada (`// proyectos`).
-- **Color:** 1 acento + neutros. Los estados nunca dependen solo del color (texto + icono + forma).
-- **Modo claro / oscuro** automático con selector manual.
-- **Movimiento:** solo transiciones funcionales (hover, foco, apertura de menús). Respeta `prefers-reduced-motion`.
-- **Accesibilidad:** contraste AA, foco visible, salto al contenido, `alt` en imágenes, etiquetas en formularios, navegación por teclado completa.
+- **Concepto:** *laboratorio nocturno*. Fondo `#07040E`, la luz nace del propio sistema.
+- **Identidad:** principal **violeta señal `#7357FF`** (portfolio: *mostrar lo que sé*) y secundario **cian fósforo `#2CC9EA`** (aula: *enseñar lo que sé*). Cada página indica su modo con un indicador visible.
+- **Tipografía:** Geist (texto y títulos, tracking negativo) + Geist Mono (código, métricas, etiquetas técnicas).
+- **Efectos, con función y medida:** aurora WebGL propia solo en el hero de inicio (media resolución, pausa fuera de pantalla, alternativa CSS); vidrio solo en navegación y elementos flotantes; borde animado en 3 lugares (proyecto destacado, recurso recomendado, llamada a la acción); halo de cursor solo en escritorio.
+- **Modo lectura:** versión clara sin efectos para leer apuntes, proyectar en el aula e imprimir.
+- **Accesibilidad:** contraste AA, foco visible, `prefers-reduced-motion` elimina toda animación, áreas táctiles de 44 px o más.
 
 ## 5. Sistema de categorías (taxonomía única)
 

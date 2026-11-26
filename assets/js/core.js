@@ -95,6 +95,7 @@
     eye: '<path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/>',
     heart: '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>',
     send: '<path d="M14.54 21.69a.5.5 0 0 0 .94-.03l6.5-19a.5.5 0 0 0-.64-.64l-19 6.5a.5.5 0 0 0-.03.94l7.93 3.18a2 2 0 0 1 1.11 1.11z"/><path d="m21.85 2.15-10.94 10.94"/>',
+    whatsapp: '<path d="M3 21l1.65-4.9A9 9 0 1 1 7.9 19.4z"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>',
     compass: '<circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-1.8 5.4a2 2 0 0 1-1.28 1.28l-5.4 1.8 1.8-5.4a2 2 0 0 1 1.28-1.28z"/>',
   };
   const icon = (name, cls = "") => `<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${P[name] || P.file}</svg>`;
@@ -257,97 +258,120 @@
     };
   })();
 
-  /* ---------- Mapa de páginas (navegación + migas) ---------- */
+  /* ---------- Mapa de páginas: 4 grandes áreas ---------- */
+  // area: perfil | aprender | proyectos | recursos   ·   mode: portfolio | aula
   const PAGES = {
     inicio: { t: "Inicio", href: "index.html", icon: "home" },
-    "sobre-mi": { t: "Sobre mí", href: "sobre-mi.html", icon: "user" },
-    portfolio: { t: "Portfolio", href: "portfolio.html", icon: "briefcase", d: "Perfil para instituciones" },
-    proyectos: { t: "Proyectos", href: "proyectos.html", icon: "layers" },
-    proyecto: { t: "Proyecto", parent: "proyectos" },
-    programacion: { t: "Programación", href: "programacion.html", icon: "code", d: "Biblioteca por lenguaje", group: "aprender" },
-    lenguaje: { t: "Lenguaje", parent: "programacion" },
-    materiales: { t: "Materiales educativos", href: "materiales.html", icon: "bookOpen", d: "Biblioteca filtrable", group: "aprender" },
-    alumnos: { t: "Recursos para alumnos", href: "alumnos.html", icon: "grad", d: "Empezá por acá", group: "aprender" },
-    rutas: { t: "Rutas de aprendizaje", href: "rutas.html", icon: "route", d: "Paso a paso con progreso", group: "aprender" },
-    ruta: { t: "Ruta", parent: "rutas" },
-    ia: { t: "IA y Educación", href: "ia.html", icon: "sparkles", d: "Uso responsable y prompts", group: "aprender" },
-    tecnologia: { t: "Tecnología", href: "tecnologia.html", icon: "cpu", d: "Hardware, redes, sistemas…", group: "aprender" },
-    recursos: { t: "Recursos y descargas", href: "recursos.html", icon: "download", d: "Archivos y herramientas", group: "aprender" },
-    "proyectos-alumnos": { t: "Proyectos de alumnos", href: "proyectos-alumnos.html", icon: "users", d: "Galería de trabajos", group: "aprender" },
-    blog: { t: "Blog", href: "blog.html", icon: "pen" },
+    "sobre-mi": { t: "Sobre mí", href: "sobre-mi.html", icon: "user", d: "Trayectoria docente y técnica", area: "perfil" },
+    portfolio: { t: "Portfolio profesional", href: "portfolio.html", icon: "briefcase", d: "Perfil en 2 minutos para instituciones", area: "perfil" },
+    blog: { t: "Blog", href: "blog.html", icon: "pen", d: "Ideas y experiencias docentes", area: "perfil" },
     articulo: { t: "Artículo", parent: "blog" },
-    contacto: { t: "Contacto", href: "contacto.html", icon: "mail" },
-    buscar: { t: "Buscar", href: "buscar.html", icon: "search" },
+    contacto: { t: "Contacto", href: "contacto.html", icon: "mail", d: "Propuestas y consultas", area: "perfil" },
+    alumnos: { t: "Recursos para alumnos", href: "alumnos.html", icon: "grad", d: "Empezá por acá, paso a paso", area: "aprender", mode: "aula" },
+    rutas: { t: "Rutas de aprendizaje", href: "rutas.html", icon: "route", d: "Niveles con tu progreso", area: "aprender", mode: "aula" },
+    ruta: { t: "Ruta", parent: "rutas" },
+    materiales: { t: "Materiales educativos", href: "materiales.html", icon: "bookOpen", d: "Apuntes, guías y ejercicios", area: "aprender", mode: "aula" },
+    programacion: { t: "Programación", href: "programacion.html", icon: "code", d: "9 lenguajes por nivel", area: "aprender", mode: "aula" },
+    lenguaje: { t: "Lenguaje", parent: "programacion" },
+    ia: { t: "IA y Educación", href: "ia.html", icon: "sparkles", d: "Uso responsable y prompts", area: "aprender", mode: "aula" },
+    tecnologia: { t: "Tecnología", href: "tecnologia.html", icon: "cpu", d: "Hardware, redes, seguridad…", area: "aprender", mode: "aula" },
+    proyectos: { t: "Proyectos", href: "proyectos.html", icon: "layers", d: "Profesionales y educativos", area: "proyectos" },
+    proyecto: { t: "Proyecto", parent: "proyectos" },
+    "proyectos-alumnos": { t: "Proyectos de alumnos", href: "proyectos-alumnos.html", icon: "users", d: "Galería con autorización", area: "proyectos" },
+    recursos: { t: "Descargas", href: "recursos.html", icon: "download", d: "Archivos con tamaño y fecha", area: "recursos", mode: "aula" },
+    buscar: { t: "Buscar", href: "buscar.html", icon: "search", d: "Todo el contenido con filtros", area: "recursos" },
     privacidad: { t: "Privacidad", href: "privacidad.html", icon: "lock" },
   };
+  const AREAS = [
+    { id: "perfil", t: "Perfil", d: "Mi trayectoria profesional y docente", items: [["sobre-mi"], ["portfolio"], ["blog"], ["contacto"]] },
+    { id: "aprender", t: "Aprender", d: "Materiales, recursos y rutas", aula: true, items: [["alumnos"], ["rutas"], ["materiales"], ["programacion"], ["ia"], ["tecnologia"]] },
+    { id: "proyectos", t: "Proyectos", d: "Propios y educativos", items: [["proyectos", "Todos los proyectos", "proyectos.html"], ["proyectos", "Proyectos profesionales", "proyectos.html?tipo=profesional", "briefcase", "Lo que desarrollo"], ["proyectos", "Proyectos educativos", "proyectos.html?tipo=educativo", "grad", "Para hacer en clase"], ["proyectos-alumnos"]] },
+    { id: "recursos", t: "Recursos", d: "Herramientas, archivos, código y enlaces", aula: true, items: [["recursos"], ["recursos", "Código descargable", "recursos.html?g=Programación", "code", "Ejemplos por lenguaje"], ["recursos", "Herramientas", "recursos.html#h-tl", "tool", "Software recomendado"], ["materiales", "Videos y enlaces", "materiales.html?formato=enlace", "link", "Sitios recomendados"], ["buscar"]] },
+  ];
   const current = document.body.dataset.page || "";
   const currentRoot = (PAGES[current] && PAGES[current].parent) || current;
+  const pageInfo = PAGES[currentRoot] || {};
+  const MODE = pageInfo.mode || (current === "inicio" ? "" : "portfolio");
+  if (MODE === "aula") document.body.setAttribute("data-mode", "aula");
 
-  function breadcrumb(items) {
-    // items: [{t, href}] — Inicio se agrega solo
-    const all = [{ t: "Inicio", href: "index.html" }, ...items];
-    return `<nav class="breadcrumb" aria-label="Estás en"><ol>${all.map((it, i) => i === all.length - 1 ? `<li><span aria-current="page">${esc(it.t)}</span></li>` : `<li><a href="${esc(it.href)}">${esc(it.t)}</a></li>`).join("")}</ol></nav>`;
+  function modeChip() {
+    if (!MODE) return "";
+    return MODE === "aula" ? `<span class="mode-chip" title="Contenido para aprender">Aula abierta · para aprender</span>` : `<span class="mode-chip" title="Trabajo profesional">Portfolio · trabajo profesional</span>`;
   }
-  /** Migas automáticas según la página; las de detalle pasan el título final. */
+  function breadcrumb(items) {
+    const all = [{ t: "Inicio", href: "index.html" }, ...items];
+    return `<div class="crumb-row"><nav class="breadcrumb" aria-label="Estás en"><ol>${all.map((it, i) => i === all.length - 1 ? `<li><span aria-current="page">${esc(it.t)}</span></li>` : `<li><a href="${esc(it.href)}">${esc(it.t)}</a></li>`).join("")}</ol></nav>${modeChip()}</div>`;
+  }
   function autoCrumb(finalTitle) {
     const p = PAGES[current];
     if (!p || current === "inicio") return "";
     const items = [];
-    const root = p.parent ? PAGES[p.parent] : p;
-    if (root.group === "aprender" && root !== PAGES.alumnos) items.push({ t: "Aprender", href: "alumnos.html" });
-    if (p.parent) items.push({ t: root.t, href: root.href });
+    const rootP = p.parent ? PAGES[p.parent] : p;
+    const area = AREAS.find((a) => a.id === rootP.area);
+    if (area) items.push({ t: area.t, href: PAGES[area.items[0][0]].href });
+    if (p.parent && (!area || PAGES[area.items[0][0]] !== rootP)) items.push({ t: rootP.t, href: rootP.href });
     items.push({ t: finalTitle || p.t, href: p.href || "#" });
     return breadcrumb(items);
   }
 
   /* ---------- Encabezado ---------- */
+  function areaLinks(a) {
+    return a.items.map(([k, t, href, ic, d]) => {
+      const p = PAGES[k];
+      const h = href || p.href;
+      const cur = !href && currentRoot === k ? ' aria-current="page"' : "";
+      return { h, t: t || p.t, ic: ic || p.icon, d: d || p.d, cur };
+    });
+  }
   function renderHeader() {
     const S = WF.sitio;
     const host = $("#site-header");
     if (!host) return;
-    const learn = Object.entries(PAGES).filter(([, p]) => p.group === "aprender");
-    const learnActive = PAGES[currentRoot] && PAGES[currentRoot].group === "aprender";
-    const top = ["sobre-mi", "portfolio", "proyectos"];
-    const link = (k) => `<li class="nav__item"><a class="nav__link" href="${PAGES[k].href}"${currentRoot === k ? ' aria-current="page"' : ""}>${PAGES[k].t}</a></li>`;
+    const activeArea = pageInfo.area;
     host.outerHTML = `
 <header class="site-header" id="top">
-  <div class="container site-header__inner">
-    <a class="brand" href="index.html" aria-label="${esc(S.nombre)} — Inicio">
-      <span class="brand__mark" aria-hidden="true">wf<span>_</span></span>
-      <span class="brand__text"><span class="brand__name">${esc(S.nombreCorto)}</span><span class="brand__role">${esc(S.rol)}</span></span>
-    </a>
-    <nav class="nav" aria-label="Principal">
-      <ul class="nav__list">
-        ${top.map(link).join("")}
-        <li class="nav__item">
-          <button class="nav__link${learnActive ? " is-active" : ""}" type="button" aria-expanded="false" aria-controls="mega-aprender" id="btn-aprender">Aprender ${icon("chevron")}</button>
-          <div class="mega" id="mega-aprender" hidden>
-            ${learn.map(([k, p]) => `<a href="${p.href}"${currentRoot === k ? ' aria-current="page"' : ""}><span class="mega__icon">${icon(p.icon)}</span><span><strong>${p.t}</strong><small>${p.d}</small></span></a>`).join("")}
-          </div>
-        </li>
-        ${link("blog")}${link("contacto")}
-      </ul>
-    </nav>
-    <div class="header-actions">
-      <button class="search-trigger" type="button" data-search-open aria-label="Buscar en el sitio (Ctrl + K)">${icon("search")}<span class="search-trigger__label">Buscar…</span><kbd>Ctrl K</kbd></button>
-      <button class="icon-btn" type="button" data-theme-cycle aria-label="Cambiar tema">${icon("auto")}</button>
-      <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú">${icon("menu")}</button>
+  <div class="container">
+    <div class="site-header__inner glass">
+      <a class="brand" href="index.html" aria-label="${esc(S.nombre)} — Inicio">
+        <span class="brand__mark" aria-hidden="true">wf<span>_</span></span>
+        <span class="brand__text"><span class="brand__name">${esc(S.nombreCorto)}</span><span class="brand__role">${esc(S.rol)}</span></span>
+      </a>
+      <nav class="nav" aria-label="Principal">
+        <ul class="nav__list">
+          ${AREAS.map((a, i) => `<li class="nav__item">
+            <button class="nav__link${activeArea === a.id ? " is-active" : ""}" type="button" aria-expanded="false" aria-controls="mega-${a.id}" data-mega="${a.id}">${a.t} ${icon("chevron")}</button>
+            <div class="mega${a.aula ? " mega--aula" : ""}${i === AREAS.length - 1 ? " mega--right" : ""}" id="mega-${a.id}" hidden>
+              <div class="mega__head"><strong>${a.t}</strong><span>${a.d}</span></div>
+              ${areaLinks(a).map((l) => `<a href="${l.h}"${l.cur}><span class="mega__icon">${icon(l.ic)}</span><span><strong>${esc(l.t)}</strong><small>${esc(l.d || "")}</small></span></a>`).join("")}
+            </div>
+          </li>`).join("")}
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button class="search-trigger" type="button" data-search-open aria-label="Buscar en el sitio (Ctrl + K)">${icon("search")}<span class="search-trigger__label">Buscar…</span><kbd>Ctrl K</kbd></button>
+        <button class="icon-btn" type="button" data-read-toggle aria-pressed="false">${icon("book")}</button>
+        <a class="btn btn--primary btn--sm header-cta" href="contacto.html">Contacto</a>
+        <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú">${icon("menu")}</button>
+      </div>
     </div>
   </div>
   <div class="mobile-nav" id="mobile-nav" hidden>
-    <h2>Navegación</h2>
-    <ul>${["inicio", "sobre-mi", "portfolio", "proyectos", "blog", "contacto"].map((k) => `<li><a href="${PAGES[k].href}"${currentRoot === k ? ' aria-current="page"' : ""}>${icon(PAGES[k].icon)}${PAGES[k].t}</a></li>`).join("")}</ul>
-    <h2>Aprender</h2>
-    <ul>${learn.map(([k, p]) => `<li><a href="${p.href}"${currentRoot === k ? ' aria-current="page"' : ""}>${icon(p.icon)}${p.t}</a></li>`).join("")}</ul>
+    <ul><li><a href="index.html"${current === "inicio" ? ' aria-current="page"' : ""}>${icon("home")}Inicio</a></li></ul>
+    ${AREAS.map((a) => `<div class="mobile-nav__group"><h2>${a.t} <span>${a.d}</span></h2><ul>${areaLinks(a).map((l) => `<li><a href="${l.h}"${l.cur}>${icon(l.ic)}${esc(l.t)}</a></li>`).join("")}</ul></div>`).join("")}
+    <a class="btn btn--primary btn--lg" href="contacto.html">${icon("mail")} Contacto</a>
   </div>
 </header>`;
 
-    // Mega menú
-    const btn = $("#btn-aprender"), mega = $("#mega-aprender");
-    const setMega = (open) => { btn.setAttribute("aria-expanded", open); mega.hidden = !open; };
-    btn.addEventListener("click", (e) => { e.stopPropagation(); setMega(mega.hidden); });
-    document.addEventListener("click", (e) => { if (!mega.hidden && !mega.contains(e.target)) setMega(false); });
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !mega.hidden) { setMega(false); btn.focus(); } });
+    // Menús desplegables
+    const buttons = $$("[data-mega]");
+    const close = (except) => buttons.forEach((b) => { if (b !== except) { b.setAttribute("aria-expanded", "false"); $("#mega-" + b.dataset.mega).hidden = true; } });
+    buttons.forEach((b) => b.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const m = $("#mega-" + b.dataset.mega), open = m.hidden;
+      close(b); m.hidden = !open; b.setAttribute("aria-expanded", open);
+    }));
+    document.addEventListener("click", (e) => { if (!e.target.closest(".mega")) close(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") { const open = buttons.find((b) => b.getAttribute("aria-expanded") === "true"); close(); if (open) open.focus(); } });
 
     // Menú móvil
     const mt = $(".menu-toggle"), mn = $("#mobile-nav");
@@ -358,32 +382,33 @@
       mt.innerHTML = icon(open ? "x" : "menu");
       document.body.classList.toggle("nav-open", open);
     });
-
-    // Tema
-    $("[data-theme-cycle]").addEventListener("click", () => { const order = ["auto", "light", "dark"]; setTheme(order[(order.indexOf(getTheme()) + 1) % 3]); });
-    syncThemeUI();
+    syncReadUI();
   }
 
-  /* ---------- Tema ---------- */
-  function getTheme() { try { return localStorage.getItem("wf.theme") || "auto"; } catch { return "auto"; } }
-  function setTheme(t) {
-    try { t === "auto" ? localStorage.removeItem("wf.theme") : localStorage.setItem("wf.theme", t); } catch {}
-    if (t === "auto") document.documentElement.removeAttribute("data-theme"); else document.documentElement.setAttribute("data-theme", t);
-    syncThemeUI();
+  /* ---------- Modo lectura (claro) ---------- */
+  function isRead() { return document.documentElement.getAttribute("data-theme") === "light"; }
+  function setRead(on) {
+    try { on ? localStorage.setItem("wf.theme", "light") : localStorage.removeItem("wf.theme"); } catch {}
+    if (on) document.documentElement.setAttribute("data-theme", "light"); else document.documentElement.removeAttribute("data-theme");
+    syncReadUI();
+    document.dispatchEvent(new CustomEvent("wf:theme"));
   }
-  function syncThemeUI() {
-    const t = getTheme();
-    const names = { auto: "automático", light: "claro", dark: "oscuro" };
-    const b = $("[data-theme-cycle]");
-    if (b) { b.innerHTML = icon(t === "auto" ? "auto" : t === "light" ? "sun" : "moon"); b.setAttribute("aria-label", `Tema: ${names[t]}. Cambiar tema`); b.title = `Tema ${names[t]}`; }
-    $$(".theme-switch button").forEach((x) => x.setAttribute("aria-pressed", x.dataset.theme === t));
+  function syncReadUI() {
+    const on = isRead();
+    $$("[data-read-toggle]").forEach((b) => {
+      b.setAttribute("aria-pressed", on);
+      b.setAttribute("aria-label", on ? "Desactivar modo lectura (volver al modo oscuro)" : "Activar modo lectura (fondo claro, ideal para leer o proyectar)");
+      b.title = on ? "Volver al modo oscuro" : "Modo lectura: fondo claro";
+      if (b.classList.contains("read-toggle")) b.innerHTML = `${icon(on ? "moon" : "book")}${on ? "Modo oscuro" : "Modo lectura"}`;
+      else b.innerHTML = icon(on ? "moon" : "book");
+    });
   }
+  document.addEventListener("click", (e) => { if (e.target.closest("[data-read-toggle]")) setRead(!isRead()); });
 
   /* ---------- Pie de página ---------- */
   function renderFooter() {
     const S = WF.sitio, host = $("#site-footer");
     if (!host) return;
-    const col = (title, keys) => `<div><h2>${title}</h2><ul>${keys.map((k) => `<li><a href="${PAGES[k].href}">${PAGES[k].t}</a></li>`).join("")}</ul></div>`;
     const social = [
       S.redes.github && `<a class="icon-btn" href="${esc(S.redes.github)}" target="_blank" rel="noopener" aria-label="GitHub">${icon("github")}</a>`,
       S.redes.linkedin && `<a class="icon-btn" href="${esc(S.redes.linkedin)}" target="_blank" rel="noopener" aria-label="LinkedIn">${icon("linkedin")}</a>`,
@@ -399,47 +424,44 @@
         <p>${esc(S.lema)} Portfolio docente y biblioteca abierta de informática, programación y tecnología.</p>
         <div class="social">${social}</div>
       </div>
-      ${col("Docente", ["sobre-mi", "portfolio", "proyectos", "blog", "contacto"])}
-      ${col("Aprender", ["alumnos", "rutas", "programacion", "materiales"])}
-      ${col("Explorar", ["ia", "tecnologia", "recursos", "proyectos-alumnos"])}
-      <div><h2>Sitio</h2><ul><li><a href="buscar.html">Buscar</a></li><li><a href="privacidad.html">Privacidad</a></li><li><a href="sitemap.xml">Mapa del sitio (XML)</a></li>${S.integraciones.github.repoSitio ? `<li><a href="${esc(S.integraciones.github.repoSitio)}" target="_blank" rel="noopener">Código del sitio</a></li>` : ""}</ul></div>
+      ${AREAS.map((a) => `<div><h2>${a.t}</h2><ul>${areaLinks(a).map((l) => `<li><a href="${l.h}">${esc(l.t)}</a></li>`).join("")}</ul></div>`).join("")}
     </div>
     <div class="footer-bottom">
-      <span>© ${new Date().getFullYear()} ${esc(S.nombre)} · Materiales bajo licencia CC BY-NC-SA 4.0</span>
-      <div class="theme-switch" role="group" aria-label="Tema de color">
-        <button type="button" data-theme="auto">${icon("auto")}Auto</button><button type="button" data-theme="light">${icon("sun")}Claro</button><button type="button" data-theme="dark">${icon("moon")}Oscuro</button>
-      </div>
+      <span>© ${new Date().getFullYear()} ${esc(S.nombre)} · Materiales CC BY-NC-SA 4.0 · <a href="privacidad.html">Privacidad</a></span>
+      <button class="read-toggle" type="button" data-read-toggle aria-pressed="false"></button>
       <span>Actualizado: ${fmtDate(S.actualizado)}</span>
     </div>
   </div>
 </footer>`;
-    $$(".theme-switch button").forEach((b) => b.addEventListener("click", () => setTheme(b.dataset.theme)));
-    syncThemeUI();
+    syncReadUI();
   }
 
-  /* ---------- Índice de búsqueda global ---------- */
+  /* ---------- Índice de búsqueda global (con metadatos para filtrar) ---------- */
   let INDEX = null;
   function buildIndex() {
     if (INDEX) return INDEX;
     const I = [];
     const add = (o) => I.push({ ...o, _t: norm(o.titulo), _k: norm((o.tags || []).join(" ")), _x: norm(o.texto) });
     Object.entries(PAGES).filter(([, p]) => p.href).forEach(([k, p]) => add({ tipo: "Sección", icono: p.icon, titulo: p.t, texto: p.d || "", url: p.href, tags: [k] }));
-    (WF.proyectos || []).forEach((p) => add({ tipo: "Proyecto", icono: areaIcon(p.area), titulo: p.titulo, texto: p.resumen, url: `proyecto.html?id=${p.id}`, tags: [areaName(p.area), ...p.tecnologias, ...p.conceptos] }));
-    (WF.materiales || []).forEach((m) => add({ tipo: "Material", icono: areaIcon(m.tema), titulo: m.titulo, texto: m.descripcion, url: m.abrir || `materiales.html?q=${encodeURIComponent(m.titulo)}`, tags: [areaName(m.tema), T.tipos[m.tipo], T.formatos[m.formato], ...(m.etiquetas || [])] }));
+    (WF.proyectos || []).forEach((p) => add({ tipo: "Proyecto", icono: areaIcon(p.area), titulo: p.titulo, texto: p.resumen, url: `proyecto.html?id=${p.id}`, tags: [areaName(p.area), ...p.tecnologias, ...p.conceptos], area: p.area, dificultad: p.nivel, dest: p.destinatario, tecs: p.tecnologias }));
+    (WF.materiales || []).forEach((m) => add({ tipo: m.tipo === "video" ? "Video" : m.tipo === "tutorial" ? "Tutorial" : m.tipo === "codigo" ? "Código" : "Material", icono: areaIcon(m.tema), titulo: m.titulo, texto: m.descripcion, url: m.abrir || `materiales.html?q=${encodeURIComponent(m.titulo)}`, tags: [areaName(m.tema), T.tipos[m.tipo], T.formatos[m.formato], ...(m.etiquetas || [])], area: m.tema, dificultad: m.dificultad, dest: m.nivel, tecs: (m.etiquetas || []).filter((e) => /^(python|sql|html|css|javascript|java|c|c\+\+|arduino|vb\.net)$/i.test(e)).map((e) => e.replace(/^./, (c) => c.toUpperCase())) }));
     (WF.lenguajes || []).forEach((l) => {
-      add({ tipo: "Programación", icono: "code", titulo: l.nombre, texto: l.descripcion, url: `lenguaje.html?l=${l.id}`, tags: ["programacion", "lenguaje", ...l.usos] });
-      l.conceptos.forEach((c) => add({ tipo: "Programación", icono: "code", titulo: `${l.nombre}: ${c.titulo}`, texto: c.texto, url: `lenguaje.html?l=${l.id}#conceptos`, tags: [l.nombre, "concepto"] }));
-      l.ejercicios.forEach((x) => add({ tipo: "Ejercicio", icono: "target", titulo: `${l.nombre}: ${x.titulo}`, texto: x.enunciado, url: `lenguaje.html?l=${l.id}#ejercicios`, tags: [l.nombre, "ejercicio"] }));
+      add({ tipo: "Programación", icono: "code", titulo: l.nombre, texto: l.descripcion, url: `lenguaje.html?l=${l.id}`, tags: ["programacion", "lenguaje", ...l.usos], area: "programacion", tecs: [l.nombre] });
+      l.conceptos.forEach((c) => add({ tipo: "Tutorial", icono: "code", titulo: `${l.nombre}: ${c.titulo}`, texto: c.texto, url: `lenguaje.html?l=${l.id}#conceptos`, tags: [l.nombre, "concepto"], area: "programacion", dificultad: c.nivel, tecs: [l.nombre] }));
+      l.ejercicios.forEach((x) => add({ tipo: "Ejercicio", icono: "target", titulo: `${l.nombre}: ${x.titulo}`, texto: x.enunciado, url: `lenguaje.html?l=${l.id}#ejercicios`, tags: [l.nombre, "ejercicio"], area: "programacion", dificultad: x.nivel, tecs: [l.nombre] }));
     });
-    (WF.rutas || []).forEach((r) => add({ tipo: "Ruta", icono: "route", titulo: r.titulo, texto: r.descripcion, url: `ruta.html?id=${r.id}`, tags: [areaName(r.area), ...r.niveles.map((n) => n.titulo)] }));
+    (WF.rutas || []).forEach((r) => add({ tipo: "Ruta", icono: "route", titulo: r.titulo, texto: r.descripcion, url: `ruta.html?id=${r.id}`, tags: [areaName(r.area), ...r.niveles.map((n) => n.titulo)], area: r.area, dificultad: r.nivel }));
     (WF.blog || []).forEach((a) => add({ tipo: "Artículo", icono: "pen", titulo: a.titulo, texto: a.resumen, url: `articulo.html?id=${a.id}`, tags: [T.blog[a.categoria]] }));
-    (WF.alumnosProyectos || []).forEach((a) => add({ tipo: "Proyecto de alumnos", icono: "users", titulo: a.titulo, texto: a.solucion, url: `proyectos-alumnos.html#${a.id}`, tags: a.tecnologias }));
-    (T.alumnos || []).forEach((c) => add({ tipo: "Alumnos", icono: "grad", titulo: `${c.emoji} ${c.nombre} (alumnos)`, texto: "Recursos para alumnos", url: `alumnos.html?cat=${c.id}`, tags: [c.nombre] }));
-    const S = WF.secciones || {};
-    (S.iaTemas || []).forEach((t) => add({ tipo: "IA y Educación", icono: "sparkles", titulo: t.titulo, texto: t.texto, url: `ia.html#tema-${t.id}`, tags: ["ia", "inteligencia artificial"] }));
-    (S.tecnologiaAreas || []).forEach((t) => add({ tipo: "Tecnología", icono: t.icono, titulo: t.titulo, texto: t.texto, url: `tecnologia.html#${t.id}`, tags: t.temas }));
+    (WF.alumnosProyectos || []).forEach((a) => add({ tipo: "Proyecto", icono: "users", titulo: a.titulo, texto: a.solucion, url: `proyectos-alumnos.html#${a.id}`, tags: a.tecnologias, area: a.area, tecs: a.tecnologias }));
+    (T.alumnos || []).forEach((c) => add({ tipo: "Sección", icono: "grad", titulo: `${c.emoji} ${c.nombre} (alumnos)`, texto: "Recursos para alumnos", url: `alumnos.html?cat=${c.id}`, tags: [c.nombre], area: c.area || undefined }));
+    const SE = WF.secciones || {};
+    (SE.iaTemas || []).forEach((t) => add({ tipo: "Tutorial", icono: "sparkles", titulo: t.titulo, texto: t.texto, url: `ia.html#tema-${t.id}`, tags: ["ia", "inteligencia artificial"], area: "ia" }));
+    (SE.tecnologiaAreas || []).forEach((t) => add({ tipo: "Sección", icono: t.icono, titulo: t.titulo, texto: t.texto, url: `tecnologia.html#${t.id}`, tags: t.temas, area: t.id }));
+    (SE.herramientas || []).forEach((h) => add({ tipo: "Recurso", icono: "tool", titulo: h.nombre, texto: h.texto, url: h.url, tags: ["herramienta"], area: h.area }));
+    Object.values(WF.descargas || {}).filter((f) => !f.ruta.startsWith("descargas/apuntes/")).forEach((f) => add({ tipo: "Código", icono: "download", titulo: f.nombre, texto: `Archivo ${f.tipo} · ${f.ruta.split("/").slice(1, -1).join(" / ")}`, url: `recursos.html?q=${encodeURIComponent(f.nombre)}`, tags: [f.ext, f.lenguaje || ""] }));
     return (INDEX = I);
   }
+  WF.buildIndex = buildIndex;
 
   function search(q, limit = 60) {
     const terms = norm(q).split(/\s+/).filter((t) => t.length > 0);
@@ -553,6 +575,7 @@
   /* ---------- Exportar ---------- */
   Object.assign(WF, { $, $$, esc, norm, params, fmtDate, fmtBytes, hash, icon, level, status, tag, tags, areaName, areaIcon, downloadBtn, openBtn, fileInfo, cover, codeBlock, highlight, breadcrumb, autoCrumb, copyText, toast, isExternal, extAttrs, openSearch });
   WF.PAGES = PAGES;
+  WF.AREAS = AREAS;
 
   // Íconos declarativos en HTML estático: <i data-icon="code"></i>
   function hydrateIcons(root = document) { $$("[data-icon]", root).forEach((el) => { el.outerHTML = icon(el.dataset.icon, el.className); }); }
