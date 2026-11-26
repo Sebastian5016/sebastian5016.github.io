@@ -41,7 +41,7 @@ WF.sitio = {
 
   // --- Integraciones --------------------------------------------------------
   integraciones: {
-    github: { activo: true, usuario: "Sebastian5016", repoSitio: "https://github.com/Sebastian5016/1ELPAISA" },
+    github: { activo: true, usuario: "Sebastian5016", repoSitio: "https://github.com/Sebastian5016/sebastian5016.github.io" },
     youtube: { activo: false, canal: "" },
     drive: { activo: false, carpetaPublica: "" },
     forms: { activo: false, autoevaluaciones: "" },
