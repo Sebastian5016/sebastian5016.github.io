@@ -141,11 +141,12 @@ export function render(WF, root) {
     <p class="kicker" data-rv>Docencia</p>
     <h2 class="sr-only" id="doc-t">Cómo enseño</h2>
     <blockquote class="statement" data-rv>${esc(P.frase)}</blockquote>
+    <h3 class="doc__h" data-rv>Cómo entiendo la enseñanza</h3>
     <dl class="principles">${P.principios.map((p, i) => `<div data-rv style="--d:${i % 3}"><dt>${esc(p.t)}</dt><dd>${esc(p.d)}</dd></div>`).join("")}</dl>
     <div class="flow" data-rv aria-labelledby="flow-t">
       <h3 id="flow-t">Cómo trabajo en el aula</h3>
-      <ol>${P.proceso.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
       <p>${esc(P.procesoNota)}</p>
+      <ol>${P.proceso.map((s) => `<li><strong>${esc(s.t)}</strong><span>${esc(s.d)}</span></li>`).join("")}</ol>
     </div>
     <div class="ai" data-rv aria-labelledby="ia-t">
       <p class="ai__kicker">Inteligencia artificial</p>
@@ -161,7 +162,7 @@ export function render(WF, root) {
 <section class="sec sec--tint" id="areas" aria-labelledby="areas-t">
   <div class="wrap">
     ${head("Áreas", "areas-t", "Áreas en las que puedo aportar")}
-    <ul class="areas">${P.areas.map((a, i) => `<li data-rv style="--d:${i % 3}">${icon(a.icono, "areas__ico")}<div><h3>${esc(a.t)}</h3><p>${esc(a.d)}</p></div></li>`).join("")}</ul>
+    <ul class="areas">${P.areas.map((a, i) => `<li data-rv style="--d:${i % 3}">${icon(a.icono, "areas__ico")}<div><h3>${esc(a.t)}</h3><p>${esc(a.d)}</p>${a.enlace ? `<a class="lnk areas__go" href="${esc(a.enlace.u)}">${esc(a.enlace.t)} ${icon("arrow")}</a>` : ""}</div></li>`).join("")}</ul>
     <ul class="levels" aria-label="Niveles" data-rv>${P.niveles.map((n) => `<li>${esc(n)}</li>`).join("")}</ul>
   </div>
 </section>`;
@@ -175,7 +176,6 @@ export function render(WF, root) {
       <div class="proof__img"><img src="${esc(e.imagen)}" alt="" width="800" height="500" loading="lazy" decoding="async"></div>
       <div class="proof__body"><span class="proof__type">${esc(e.tipo)}</span><h3><a href="${esc(e.u)}"${ext(e.u)}>${esc(e.t)}</a></h3><p>${esc(e.d)}</p></div>
     </li>`).join("")}</ul>
-    <p class="note" data-rv>${esc(P.evidenciasNota)}</p>
   </div>
 </section>`;
 

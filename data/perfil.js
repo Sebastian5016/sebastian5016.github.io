@@ -43,16 +43,23 @@ WF.perfil = {
 
   // Docencia
   frase: "No busco que el estudiante solamente use tecnología. Busco que entienda cómo funciona, pueda crear con ella y desarrolle criterio para utilizarla.",
+  // Cómo entiendo la enseñanza: la mirada (por qué)
   principios: [
-    { t: "Aprender haciendo", d: "Cada tema termina en algo que funciona: un programa, un circuito, un proyecto." },
+    { t: "Aprendizaje significativo", d: "Lo que se aprende parte de problemas reales y cercanos a los estudiantes." },
     { t: "Tecnología con propósito", d: "Las herramientas se eligen por lo que permiten hacer, no por moda." },
-    { t: "Aprendizaje significativo", d: "Partimos de problemas reales y cercanos a los estudiantes." },
     { t: "Pensamiento lógico", d: "Ordenar ideas y descomponer problemas antes de tocar la computadora." },
-    { t: "El error como información", d: "Equivocarse es parte del método: muestra qué corregir." },
     { t: "Acompañamiento", d: "Respeto los distintos ritmos y acompaño trayectorias diversas." },
   ],
-  proceso: ["Desafío", "Exploración", "Comprensión", "Práctica", "Producción", "Reflexión"],
-  procesoNota: "Una forma de organizar las experiencias de aprendizaje, no una receta rígida.",
+  // Cómo trabajo en el aula: la secuencia práctica (cómo)
+  proceso: [
+    { t: "Desafío", d: "Un problema concreto para resolver." },
+    { t: "Exploración", d: "Probar e investigar. El error es información." },
+    { t: "Comprensión", d: "Entender por qué funciona lo que encontramos." },
+    { t: "Práctica", d: "Consignas graduales para afianzar." },
+    { t: "Producción", d: "Aprender haciendo: un programa, un circuito, un proyecto." },
+    { t: "Reflexión", d: "Revisar el proceso y compartir lo aprendido." },
+  ],
+  procesoNota: "Así se traduce esa mirada en una clase: una forma de organizar el aprendizaje, no una receta rígida.",
   ia: {
     t: "IA como tutor que hace preguntas, no como atajo.",
     d: "Uso la inteligencia artificial para aprender, investigar, comparar y revisar; nunca como sustituto del pensamiento del estudiante.",
@@ -66,7 +73,7 @@ WF.perfil = {
     { icono: "globe", t: "NTICx", d: "Tecnología, ciudadanía digital, pensamiento crítico y cultura digital." },
     { icono: "code", t: "Programación", d: "Python, JavaScript, C/C++, lógica y resolución de problemas." },
     { icono: "layers", t: "Tecnología educativa", d: "Plataformas, recursos digitales y herramientas para enseñar y aprender." },
-    { icono: "cpu", t: "Robótica educativa", d: "Arduino, programación, electrónica aplicada y proyectos tecnológicos." },
+    { icono: "cpu", t: "Robótica educativa", d: "Arduino · programación · electrónica aplicada · sensores · proyectos tecnológicos.", enlace: { t: "Ver proyecto con Arduino", u: "proyecto.html?id=semaforo-arduino" } },
     { icono: "spark", t: "Inteligencia artificial", d: "Uso educativo responsable, alfabetización en IA y verificación de información." },
     { icono: "shield", t: "Seguridad digital", d: "Ciberseguridad, buenas prácticas, privacidad y ciudadanía digital." },
   ],
@@ -81,7 +88,6 @@ WF.perfil = {
     { tipo: "Recurso digital", t: "Ruta de aprendizaje", imagen: "assets/img/evidencias/ruta.jpg", d: "Niveles con progreso, para avanzar a ritmo propio.", u: "ruta.html?id=intro-programacion" },
     { tipo: "IA en el aula", t: "Constructor de prompts", imagen: "assets/img/evidencias/ia-prompts.jpg", d: "Formular buenas preguntas y verificar las respuestas.", u: "ia.html#prompts" },
   ],
-  evidenciasNota: "Las producciones de estudiantes se sumarán con autorización de las familias y sin datos personales.",
 
   // Proyectos
   destacado: {

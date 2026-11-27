@@ -332,7 +332,6 @@
   <div class="container">
     <div class="site-header__inner glass">
       <a class="brand" href="index.html" aria-label="${esc(S.nombre)} — Inicio">
-        <span class="brand__mark" aria-hidden="true">wf<span>_</span></span>
         <span class="brand__text"><span class="brand__name">${esc(S.nombreCorto)}</span><span class="brand__role">${esc(S.rol)}</span></span>
       </a>
       <nav class="nav" aria-label="Principal">
@@ -419,7 +418,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a class="brand" href="index.html"><span class="brand__mark" aria-hidden="true">wf<span>_</span></span><span class="brand__text"><span class="brand__name">${esc(S.nombre)}</span><span class="brand__role">${esc(S.rol)}</span></span></a>
+        <a class="brand" href="index.html"><span class="brand__text"><span class="brand__name">${esc(S.nombre)}</span><span class="brand__role">${esc(S.rol)}</span></span></a>
         <p>${esc(S.lema)} Portfolio docente y biblioteca abierta de informática, programación y tecnología.</p>
         <div class="social">${social}</div>
       </div>

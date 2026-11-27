@@ -7,9 +7,9 @@
    ========================================================================== */
 window.WF = window.WF || {};
 WF.sitio = {
-  nombre: "Walter Sebastián Fernández",
-  nombreCorto: "Walter Fernández",
-  iniciales: "WF",
+  nombre: "Sebastián Fernández",        // marca profesional (nombre formal: Walter Sebastián Fernández, solo en CV y documentación)
+  nombreCorto: "Sebastián Fernández",
+  iniciales: "SF",
   rol: "Profesor de Informática",
   roles: ["Profesor de Informática", "Tecnología", "Programación", "Educación Digital"],
   niveles: "Secundaria, Educación Técnico-Profesional y adultos",
