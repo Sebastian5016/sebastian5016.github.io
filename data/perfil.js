@@ -1,10 +1,11 @@
 /* ==========================================================================
    PERFIL PROFESIONAL — fuente única del portfolio (portfolio.html) y del CV
-   público en PDF (descargas/cv/). Posicionamiento: primero docente, con la
-   tecnología y la experiencia profesional como diferencial.
-   REGLA: solo información real y verificable (CV de W. S. Fernández y datos
-   indicados por él). Si un dato no está confirmado, se deja fuera.
-   Para sumar un proyecto: agregar un objeto en `proyectosTec` o `proyectosEdu`.
+   público en PDF (descargas/cv/). Jerarquía: docencia → experiencia docente
+   actual → propuesta pedagógica → tecnología → experiencia profesional →
+   proyectos → formación → detalles técnicos.
+   REGLA: solo información real (CV de W. S. Fernández y datos indicados por él).
+   Evidencias: solo material real publicado. Para sumar una, agregar un objeto
+   en `evidencias` (con `imagen` o sin ella: se muestra como espacio reservado).
    ========================================================================== */
 window.WF = window.WF || {};
 WF.perfil = {
@@ -17,134 +18,141 @@ WF.perfil = {
   fotoAlt: "Retrato de Walter Sebastián Fernández, sonriendo, con camisa celeste y suéter oscuro.",
   cv: "descargas/cv/CV-Walter-Sebastian-Fernandez.pdf",
 
-  // Datos visibles en la portada (respuesta en 20 segundos)
-  hoy: {
-    titulo: "Hoy enseño",
-    items: ["NTICx en EES N.º 38 y ES N.º 178 «Padre Bachi»", "Lenguajes Tecnológicos en EEST N.º 10"],
-  },
+  // Portada: lo que hoy hace (respuesta en 20 segundos)
+  hoy: ["NTICx en EES N.º 38 y ES N.º 178 «Padre Bachi»", "Lenguajes Tecnológicos en EEST N.º 10"],
   claves: [
-    { t: "Docente de NTICx", d: "y Lenguajes Tecnológicos · 3 escuelas" },
-    { t: "Técnico Superior", d: "Análisis y Programación de Aplicaciones" },
-    { t: "Diplomatura", d: "Ciberseguridad · UNNE" },
-    { t: "+25 años", d: "de coordinación, capacitación y conducción de equipos" },
+    { t: "Docente en 3 escuelas", d: "NTICx y Lenguajes Tecnológicos" },
+    { t: "Formación técnica superior", d: "Análisis y Programación · Ciberseguridad" },
+    { t: "+25 años", d: "de experiencia profesional en coordinación y capacitación" },
+  ],
+  lema: "Gestión, técnica y aula: tres experiencias que normalmente no conviven en un mismo perfil docente.",
+
+  // Quién soy
+  quienSoy: "Soy profesor de Informática y Tecnología en escuelas secundarias de La Matanza. Antes de llegar al aula trabajé más de 25 años en coordinación, capacitación y conducción de equipos; en paralelo me formé como Técnico Superior en Análisis y Programación y desarrollé proyectos web propios. Hoy curso el tramo pedagógico de nivel superior. Mi diferencial está en combinar esos conocimientos técnicos, esa experiencia profesional y la formación docente para convertir la tecnología en una herramienta de aprendizaje.",
+  etapasTitulo: "Cada etapa agregó algo que hoy llevo al aula",
+  etapas: [
+    { t: "Gestión y coordinación", d: "Organización, liderazgo, toma de decisiones y trabajo en contextos complejos." },
+    { t: "Capacitación", d: "Formación de personas con distintos puntos de partida." },
+    { t: "Tecnología", d: "Programación, sistemas y proyectos web reales." },
+    { t: "Docencia", d: "Enseñanza de NTICx y Lenguajes Tecnológicos." },
   ],
 
-  // Sobre mí: la trayectoria como fortaleza
-  sobreMi: [
-    "Soy profesor de Informática y Tecnología. Enseño NTICx y Lenguajes Tecnológicos en escuelas secundarias de La Matanza, y llevo adelante TecnoMayores, un proyecto propio de inclusión digital para adultos mayores.",
-    "Llegué al aula con una trayectoria profesional amplia. Durante más de 25 años trabajé en el Ministerio de Justicia de la Provincia de Buenos Aires en tareas de instrucción, coordinación y conducción de equipos, y entre 2021 y 2026 coordiné el acompañamiento de trayectorias educativas, articulando con escuelas y docentes. Esa experiencia me enseñó a organizar, a comunicar con claridad y a acompañar a personas con recorridos muy distintos.",
-    "En paralelo me formé en tecnología: soy Técnico Superior en Análisis y Programación de Aplicaciones (título en trámite), tengo una Diplomatura en Ciberseguridad (UNNE) y desde 2012 desarrollo sitios web y aplicaciones de gestión. Hoy curso el tramo pedagógico de nivel superior.",
+  // Experiencia docente actual (prioritaria, datos del CV)
+  docenciaActual: [
+    { escuela: "EES N.º 38", lugar: "Villa Madero", nivel: "Secundaria", materia: "NTICx", cursos: "4.º 1.ª y 4.º 2.ª" },
+    { escuela: "ES N.º 178 «Padre Bachi»", lugar: "San Justo", nivel: "Secundaria", materia: "NTICx", cursos: "4.º 1.ª" },
+    { escuela: "EEST N.º 10", lugar: "Villa Madero", nivel: "Educación Técnico-Profesional", materia: "Lenguajes Tecnológicos", cursos: "2.º 4.ª" },
   ],
-  diferencial: "Mi diferencial no está únicamente en conocer tecnología. Está en poder combinar conocimientos técnicos, experiencia profesional, capacidad de organización y formación docente para convertir la tecnología en una herramienta de aprendizaje.",
+  docenciaPeriodo: "Actualidad",
 
-  // Qué puedo aportar a una institución
+  // Qué puedo aportar: tres destinatarios, tres funciones distintas
   aportes: [
-    { icono: "learn", t: "Tecnología aplicada al aprendizaje", d: "Integración de herramientas digitales, programación y recursos tecnológicos para desarrollar pensamiento lógico y resolución de problemas." },
-    { icono: "code", t: "Formación tecnológica", d: "Programación, sistemas, bases de datos, desarrollo web y herramientas digitales, con formación técnica superior." },
-    { icono: "briefcase", t: "Experiencia profesional", d: "Una trayectoria amplia que aporta organización, responsabilidad, comunicación, resolución de problemas y trabajo en equipo." },
-    { icono: "users", t: "Trabajo con estudiantes", d: "Propuestas prácticas, claras y progresivas, que contemplan diferentes ritmos y niveles de conocimiento." },
-    { icono: "layers", t: "Proyectos", d: "Transformar contenidos tecnológicos en actividades, proyectos y producciones concretas." },
-    { icono: "school", t: "Trabajo institucional", d: "Integrarme a equipos docentes, proyectos interdisciplinarios y objetivos institucionales, con experiencia en articulación con escuelas." },
+    { para: "A los estudiantes", foco: "Aprender haciendo", items: ["Aprendizaje significativo y acompañamiento", "Pensamiento lógico y resolución de problemas", "Creatividad y participación", "Uso responsable de la tecnología"] },
+    { para: "Al equipo docente", foco: "Sumar herramientas", items: ["Colaboración y recursos digitales", "Tecnología educativa e IA responsable", "Proyectos compartidos", "Acompañamiento tecnológico a colegas"] },
+    { para: "A la institución", foco: "Sostener proyectos", items: ["Proyectos tecnológicos e interdisciplinarios", "Organización y experiencia profesional", "Capacidad técnica propia", "Articulación con equipos y escuelas"] },
   ],
 
-  // Propuesta docente
-  ensenanza: [
-    "Enseñar informática no consiste solamente en enseñar a usar herramientas. Busco que mis estudiantes comprendan cómo funciona la tecnología, desarrollen pensamiento lógico, resuelvan problemas y puedan crear con los recursos digitales, usándolos de manera responsable.",
-    "Por eso trabajo con situaciones concretas, cercanas a ellos, y dejo espacio para probar, equivocarse y volver a intentar. El error es información: muestra qué entendimos y qué falta. Y respeto los distintos ritmos, porque no todos llegan al aula desde el mismo lugar.",
+  // Cómo entiendo la enseñanza
+  ensenanza: "Enseñar informática no es enseñar a usar programas. Busco que mis estudiantes entiendan cómo funciona la tecnología, piensen con lógica, resuelvan problemas y creen con ella de forma responsable.",
+  enfoque: [
+    { t: "Aprendizaje significativo", d: "Partimos de problemas reales y cercanos." },
+    { t: "Tecnología con sentido", d: "Las herramientas se eligen por lo que permiten hacer." },
+    { t: "El error como información", d: "Para corregir y mejorar, no para sancionar." },
+    { t: "Acompaño trayectorias diversas", d: "Cada estudiante tiene su ritmo y su punto de partida." },
+    { t: "Pensamiento crítico", d: "Preguntar de dónde viene la información." },
+    { t: "Participación", d: "Cada uno tiene algo para hacer y algo para aportar." },
   ],
-  busco: ["Aprendizaje significativo", "Pensamiento lógico y crítico", "Trabajo por proyectos", "Acompañamiento de trayectorias", "Inclusión y distintos ritmos", "Ciudadanía digital", "Uso responsable de la IA"],
+  estudiante: [
+    { t: "Resolver", d: "Problemas y desafíos tecnológicos." },
+    { t: "Crear", d: "Aplicaciones, producciones y proyectos." },
+    { t: "Comprender", d: "Cómo funcionan las tecnologías." },
+    { t: "Pensar", d: "Lógica, análisis y pensamiento crítico." },
+    { t: "Experimentar", d: "Prueba, error y mejora." },
+    { t: "Usar con responsabilidad", d: "Tecnología, información e IA." },
+  ],
+  ia: {
+    t: "IA con criterio",
+    d: "La inteligencia artificial es una herramienta para aprender, investigar, preguntar, comparar, crear y revisar; no un sustituto del pensamiento del estudiante. La uso como un tutor que hace preguntas, no como un atajo.",
+    enlace: { t: "Ver la guía de IA para el aula", u: "ia.html" },
+  },
+
+  // Cómo trabajo en el aula
   proceso: [
-    { t: "Desafío", d: "Presentar un problema, una pregunta o una situación." },
-    { t: "Exploración", d: "Observar, investigar, probar y formular hipótesis." },
-    { t: "Explicación", d: "Construir juntos los conceptos necesarios." },
-    { t: "Práctica", d: "Resolver actividades de dificultad progresiva." },
-    { t: "Producción", d: "Crear una solución, un proyecto o un producto." },
-    { t: "Reflexión", d: "Revisar lo aprendido, detectar errores y comunicar resultados." },
+    { t: "Desafío", d: "Partir de una situación, un problema o una pregunta." },
+    { t: "Exploración", d: "Investigar, probar y formular hipótesis." },
+    { t: "Comprensión", d: "Construir los conceptos necesarios." },
+    { t: "Práctica", d: "Resolver actividades progresivas." },
+    { t: "Producción", d: "Crear una solución o un proyecto." },
+    { t: "Reflexión", d: "Revisar, explicar, corregir y compartir lo aprendido." },
   ],
-  procesoNota: "No es una receta rígida: es la forma en que suelo organizar las experiencias de aprendizaje. Se adapta al grupo, al tema y al tiempo disponible.",
+  procesoNota: "No es una metodología rígida: es una forma de organizar las experiencias de aprendizaje, que se adapta al grupo y al tema.",
 
-  // Áreas (con evidencia real de cada una)
+  // Así se ve mi trabajo (material real publicado en la plataforma)
+  evidencias: [
+    { tipo: "Material didáctico", t: "Apunte de introducción a la programación", imagen: "assets/img/evidencias/apunte.jpg", alt: "Página del apunte Introducción a la programación con Python, con objetivos, explicación y ejemplo de algoritmo.", trabaja: "Algoritmos, variables, condicionales y bucles, con objetivos y actividad final.", demuestra: "Diseño de materiales propios y lenguaje claro para estudiantes.", u: "apuntes/introduccion-programacion.html" },
+    { tipo: "Actividad de programación", t: "Calculadora en Python, paso a paso", imagen: "assets/img/evidencias/proyecto-codigo.jpg", alt: "Ficha del proyecto Calculadora en Python mostrando el código comentado.", trabaja: "Funciones, validación de datos y manejo de errores, a partir de un problema.", demuestra: "Programación, resolución de problemas y aprendizaje práctico.", u: "proyecto.html?id=calculadora-python" },
+    { tipo: "Producción en clase", t: "Verificador de contraseñas", imagen: "assets/img/evidencias/app-contrasenas.jpg", alt: "Aplicación web Verificador de contraseñas evaluando una contraseña de prueba como fuerte.", trabaja: "Programación web y seguridad digital: una aplicación que funciona en el navegador.", demuestra: "Ciudadanía digital llevada a un producto concreto.", u: "descargas/proyectos/contrasenas/index.html" },
+    { tipo: "Recurso digital", t: "Ruta de aprendizaje con progreso", imagen: "assets/img/evidencias/ruta.jpg", alt: "Ruta de aprendizaje Introducción a la programación, con niveles completados y barra de progreso.", trabaja: "Un recorrido por niveles para avanzar a ritmo propio.", demuestra: "Acompañamiento de distintos ritmos y autonomía del estudiante.", u: "ruta.html?id=intro-programacion" },
+    { tipo: "IA en el aula", t: "Constructor de prompts", imagen: "assets/img/evidencias/ia-prompts.jpg", alt: "Herramienta Constructor de prompts con un ejemplo de consigna para estudiar.", trabaja: "Formular buenas preguntas a la IA y verificar sus respuestas.", demuestra: "Uso responsable y crítico de la inteligencia artificial.", u: "ia.html#prompts" },
+    { tipo: "Producciones de estudiantes", t: "Espacio reservado", imagen: "", trabaja: "Se publicarán con autorización de las familias y sin datos personales.", demuestra: "Cuidado de la privacidad de los estudiantes.", u: "" },
+  ],
+  evidenciasNota: "Todo el material está publicado en la plataforma educativa y puede abrirse.",
+
+  // Áreas (foco: secundaria, ETP, Informática, NTICx, Tecnología)
   areas: [
-    { t: "NTICx", d: "Lo enseño actualmente en EES N.º 38 y ES N.º 178.", principal: true },
-    { t: "Informática", d: "Hardware, sistemas, redes, bases de datos y ofimática.", principal: true },
-    { t: "Programación", d: "Lenguajes Tecnológicos en EEST N.º 10. Técnico Superior en Análisis y Programación.", principal: true },
-    { t: "Tecnología", d: "Sistemas, redes y seguridad, con base técnica y profesional.", principal: true },
-    { t: "Alfabetización digital", d: "Desde estudiantes secundarios hasta adultos mayores (TecnoMayores)." },
-    { t: "Pensamiento computacional", d: "Descomposición, patrones, abstracción y algoritmos." },
-    { t: "Herramientas digitales", d: "Ofimática, entornos colaborativos y recursos para el aula." },
-    { t: "Ciudadanía digital", d: "Seguridad, privacidad y uso responsable. Diplomatura en Ciberseguridad." },
+    { t: "Informática", principal: true },
+    { t: "NTICx", d: "Actualmente en EES N.º 38 y ES N.º 178", principal: true },
+    { t: "Tecnología", principal: true },
+    { t: "Programación", d: "Lenguajes Tecnológicos en EEST N.º 10", principal: true },
+    { t: "Pensamiento computacional" },
+    { t: "Alfabetización digital" },
+    { t: "Ciudadanía digital" },
+    { t: "Herramientas digitales" },
   ],
   niveles: ["Secundaria", "Educación Técnico-Profesional", "Formación de adultos"],
-  habilitacion: "Inscripción docente DGCyE — Listado 108 A 2027",
 
-  // Proyectos tecnológicos (qué demuestran profesionalmente)
-  proyectosTec: [
-    {
-      nombre: "Plataforma educativa y portfolio",
-      descripcion: "Este sitio: portfolio profesional y biblioteca abierta de informática con apuntes, rutas de aprendizaje, proyectos y herramientas para el aula.",
-      problema: "Los materiales de clase quedan dispersos y los estudiantes no tienen dónde consultarlos a su ritmo.",
-      tecnologias: ["HTML", "CSS", "JavaScript", "Git/GitHub"],
-      demuestra: ["Desarrollo web", "Organización de contenidos", "Accesibilidad", "Diseño para estudiantes"],
-      estado: "En desarrollo",
-      enlaces: [{ t: "Ver la plataforma", u: "index.html" }, { t: "Código en GitHub", u: "https://github.com/Sebastian5016/sebastian5016.github.io" }],
-    },
-    {
-      nombre: "El Paisa Servicios Integrales",
-      descripcion: "Sitio web y aplicaciones de gestión para mi emprendimiento de servicios técnicos, en funcionamiento desde 2012.",
-      problema: "Un emprendimiento necesita mostrar sus servicios, recibir consultas y organizar el trabajo diario.",
-      tecnologias: ["HTML", "CSS", "JavaScript", "Git/GitHub"],
-      demuestra: ["Proyecto real sostenido en el tiempo", "Desarrollo y mantenimiento", "Resolución de problemas"],
-      estado: "En uso",
-      enlaces: [{ t: "Ver sitio", u: "https://sebastian5016.github.io/ELPAISA/" }, { t: "Código en GitHub", u: "https://github.com/Sebastian5016/ELPAISA" }],
-    },
+  // Proyectos (evidencia, no decoración)
+  proyectos: [
+    { tipo: "Proyecto educativo", nombre: "TecnoMayores — «Tecnología a tu ritmo»", que: "Programa propio de seis semanas de inclusión digital para adultos mayores: celular, WhatsApp, trámites y seguridad.", problema: "Personas mayores que dependen de otros para usar el celular y quedan expuestas a estafas.", tecnologias: ["Alfabetización digital", "Materiales y juegos propios"], demuestra: "Capacidad pedagógica, adaptación y trabajo con estudiantes de otros perfiles.", estado: "En curso", enlaces: [{ t: "Ver el proyecto", u: "proyecto.html?id=tecnomayores" }] },
+    { tipo: "Proyecto tecnológico", nombre: "Plataforma educativa y portfolio", que: "Este sitio: portfolio y biblioteca abierta de informática con apuntes, rutas, proyectos y herramientas para el aula.", problema: "Materiales de clase dispersos, sin un lugar donde consultarlos a ritmo propio.", tecnologias: ["HTML", "CSS", "JavaScript", "Git/GitHub"], demuestra: "Desarrollo web al servicio de la enseñanza, organización y accesibilidad.", estado: "En desarrollo", enlaces: [{ t: "Ver la plataforma", u: "index.html" }, { t: "Código", u: "https://github.com/Sebastian5016/sebastian5016.github.io" }] },
+    { tipo: "Proyecto profesional", nombre: "El Paisa Servicios Integrales", que: "Sitio web y aplicaciones de gestión para mi emprendimiento de servicios técnicos, desde 2012.", problema: "Mostrar servicios, recibir consultas y organizar el trabajo diario.", tecnologias: ["HTML", "CSS", "JavaScript"], demuestra: "Iniciativa, gestión y tecnología aplicada a un caso real.", estado: "En uso", enlaces: [{ t: "Ver sitio", u: "https://sebastian5016.github.io/ELPAISA/" }] },
   ],
 
-  // Proyectos y recursos educativos (publicados en la plataforma)
-  proyectosEdu: [
-    { nombre: "TecnoMayores — «Tecnología a tu ritmo»", tipo: "Experiencia educativa", descripcion: "Programa propio de seis semanas de inclusión digital para adultos mayores: celular, WhatsApp, trámites y seguridad, con materiales y juegos didácticos propios.", enlace: { t: "Ver el proyecto", u: "proyecto.html?id=tecnomayores" } },
-    { nombre: "Proyectos para trabajar en clase", tipo: "Propuestas de programación", descripcion: "Calculadora en Python, sistema de notas en SQL, red de una escuela, verificador de contraseñas, primera página web y otros, con consigna, código y actividad.", enlace: { t: "Ver los proyectos", u: "proyectos.html?tipo=educativo" } },
-    { nombre: "Apuntes y rutas de aprendizaje", tipo: "Materiales para estudiantes", descripcion: "Apuntes descargables en PDF y recorridos paso a paso de programación, desarrollo web, bases de datos e IA.", enlace: { t: "Ver los materiales", u: "materiales.html" } },
-    { nombre: "IA con criterio en el aula", tipo: "Ciudadanía digital", descripcion: "Guía de uso responsable, ejemplos de buenas y malas consignas, constructor de prompts y lista de verificación para estudiantes.", enlace: { t: "Ver la sección", u: "ia.html" } },
-  ],
-  proyectosEduNota: "Este espacio va creciendo: cada nuevo proyecto o experiencia de aula se suma a la plataforma.",
-
-  // Tecnologías (sin niveles de dominio)
-  tecnologias: [
-    { t: "Programación", items: ["Python", "Java", "C/C++", "JavaScript", "VB.NET"] },
-    { t: "Desarrollo web", items: ["HTML", "CSS", "React", "Node.js"] },
-    { t: "Bases de datos", items: ["MySQL", "SQL Server", "PostgreSQL"] },
-    { t: "Herramientas y entornos", items: ["Visual Studio", "VS Code", "Git/GitHub"] },
-    { t: "IA y nuevas tecnologías", items: ["Herramientas de IA generativa para el aula"] },
-  ],
-
-  // Experiencia
-  expDocente: [
-    { cargo: "Profesor de NTICx y Lenguajes Tecnológicos", lugar: "EES N.º 38 (Villa Madero) · ES N.º 178 «Padre Bachi» (San Justo) · EEST N.º 10 (Villa Madero)", periodo: "Actualidad", texto: "NTICx en 4.º año y Lenguajes Tecnológicos en 2.º año de escuela técnica.", actual: true },
-    { cargo: "Creador y docente — Proyecto TecnoMayores", lugar: "«Tecnología a tu ritmo» · Adultos mayores", periodo: "2026 – actualidad", texto: "Inclusión digital con enseñanza adaptada al ritmo de cada participante." },
-    { cargo: "Coordinador de Educación", lugar: "Ministerio de Justicia de la Provincia de Buenos Aires", periodo: "2021 – 2026", texto: "Acompañamiento de trayectorias educativas diversas y discontinuas. Articulación con escuelas y docentes." },
-  ],
-  expProfesional: [
-    { cargo: "Titular — El Paisa Servicios Integrales", lugar: "Ramos Mejía", periodo: "2012 – actualidad", texto: "Plataforma de servicios técnicos. Desarrollo web y aplicaciones de gestión.", aporta: "Desarrollo, resolución técnica de problemas" },
+  // Experiencia profesional y educativa previa
+  experiencia: [
+    { cargo: "Coordinador de Educación", lugar: "Ministerio de Justicia de la Provincia de Buenos Aires", periodo: "2021 – 2026", texto: "Acompañamiento de trayectorias educativas diversas y discontinuas. Articulación con escuelas y docentes.", aporta: "Acompañamiento, articulación institucional" },
     { cargo: "Instructor de personal", lugar: "Servicio Penitenciario Bonaerense", periodo: "2017 – 2021", texto: "Instrucción práctica y formación del personal.", aporta: "Capacitación y formación de personas" },
-    { cargo: "Ministerio de Justicia de la Provincia de Buenos Aires", lugar: "Trayectoria completa · Retirado", periodo: "2000 – 2026", texto: "Funciones de instrucción, coordinación y conducción de equipos.", aporta: "Coordinación, liderazgo y trabajo bajo presión" },
+    { cargo: "Titular — El Paisa Servicios Integrales", lugar: "Ramos Mejía", periodo: "2012 – actualidad", texto: "Desarrollo web y aplicaciones de gestión.", aporta: "Desarrollo y resolución técnica de problemas" },
+    { cargo: "Ministerio de Justicia de la Provincia de Buenos Aires", lugar: "Trayectoria completa · Retirado", periodo: "2000 – 2026", texto: "Instrucción, coordinación y conducción de equipos.", aporta: "Liderazgo, organización y toma de decisiones" },
   ],
-  expAporta: ["Coordinación", "Liderazgo", "Capacitación", "Organización", "Responsabilidad", "Comunicación", "Resolución de problemas", "Trabajo bajo presión", "Trabajo en equipo", "Toma de decisiones", "Formación de personas"],
+  expAporta: ["Liderazgo", "Coordinación", "Capacitación", "Organización", "Responsabilidad", "Comunicación", "Resolución de problemas", "Trabajo en equipo", "Toma de decisiones"],
 
-  // Formación (prioridad: docente → superior → tecnológica → otras)
+  // Formación (estado explícito: obtenido · en trámite · en curso)
   formacion: [
-    { grupo: "Formación docente", t: "Tramo pedagógico de nivel superior", i: "", a: "En curso" },
-    { grupo: "Formación docente", t: "Inscripción docente DGCyE", i: "Listado 108 A 2027", a: "Habilitación vigente" },
-    { grupo: "Formación superior", t: "Técnico Superior en Análisis y Programación de Aplicaciones", i: "ISFDyT N.º 46, Ramos Mejía", a: "2026 · título en trámite", destacado: true },
-    { grupo: "Formación tecnológica", t: "Diplomatura en Ciberseguridad", i: "Universidad Nacional del Nordeste (UNNE)", a: "2024" },
-    { grupo: "Formación técnica", t: "Técnico en Refrigeración Industrial", i: "Universidad Tecnológica Nacional (UTN)", a: "2014" },
-    { grupo: "Formación superior", t: "Técnico Superior en Seguridad Institucional", i: "", a: "2009" },
+    { grupo: "Formación docente", t: "Tramo pedagógico de nivel superior", i: "", a: "", estado: "en curso" },
+    { grupo: "Formación superior", t: "Técnico Superior en Análisis y Programación de Aplicaciones", i: "ISFDyT N.º 46, Ramos Mejía", a: "2026", estado: "en trámite", destacado: true },
+    { grupo: "Formación tecnológica", t: "Diplomatura en Ciberseguridad", i: "Universidad Nacional del Nordeste (UNNE)", a: "2024", estado: "certificado" },
+    { grupo: "Formación técnica", t: "Técnico en Refrigeración Industrial", i: "Universidad Tecnológica Nacional (UTN)", a: "2014", estado: "obtenido" },
+    { grupo: "Formación superior", t: "Técnico Superior en Seguridad Institucional", i: "", a: "2009", estado: "obtenido" },
   ],
+  estadosFormacion: { "obtenido": "Título obtenido", "certificado": "Certificación obtenida", "en trámite": "Título en trámite", "en curso": "En curso" },
+  credenciales: [{ t: "Inscripción docente DGCyE", d: "Listado 108 A 2027" }],
   idiomas: [{ t: "Español", n: "Nativo" }, { t: "Inglés", n: "Intermedio (B1)" }],
 
-  // Competencias
+  // Competencias y tecnologías
   competencias: [
     { t: "Pedagógicas", items: ["Comunicación clara", "Planificación", "Acompañamiento de estudiantes", "Aprendizaje basado en problemas", "Trabajo por proyectos", "Alfabetización digital"] },
-    { t: "Tecnológicas", items: ["Programación", "Bases de datos", "Desarrollo web", "Herramientas digitales", "IA aplicada al aula", "Resolución técnica de problemas"] },
-    { t: "Profesionales", items: ["Organización", "Coordinación", "Liderazgo", "Trabajo en equipo", "Comunicación", "Resolución de problemas", "Responsabilidad"] },
+    { t: "Profesionales", items: ["Organización", "Coordinación", "Liderazgo", "Trabajo en equipo", "Resolución de problemas", "Responsabilidad"] },
   ],
+  tecnologias: [
+    { t: "Programación", items: ["Python", "Java", "C/C++", "JavaScript", "VB.NET"] },
+    { t: "Desarrollo web", items: ["HTML", "CSS", "React", "Node.js", "Next.js"] },
+    { t: "Bases de datos", items: ["MySQL", "SQL Server", "PostgreSQL"] },
+    { t: "Herramientas", items: ["Visual Studio", "VS Code", "Git/GitHub"] },
+    { t: "IA y tecnología", items: ["Herramientas de IA generativa aplicadas al aula"] },
+  ],
+
+  // Cierre
+  ctaTitulo: "¿Buscás un docente de Informática, NTICx o Tecnología?",
+  ctaTexto: "Estoy disponible para incorporarme a instituciones educativas, proyectos institucionales y propuestas de formación tecnológica.",
 };

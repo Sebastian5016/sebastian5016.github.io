@@ -52,13 +52,17 @@ footer { margin-top: 12px; font-size: 7.8pt; color: #8a849f; text-align: center;
 <main>
   <section>
     <h2>Perfil</h2><p class="lead">${esc(P.bajada)}</p>
-    <h2>Experiencia docente y educativa</h2>${exp(P.expDocente)}
-    <h2>Experiencia profesional</h2>${exp(P.expProfesional)}
-    <h2>Formación</h2>${P.formacion.map((f) => `<div class="item"><div class="row"><b>${esc(f.t)}</b><span>${esc(f.a)}</span></div>${f.i ? `<div class="place">${esc(f.i)}</div>` : ""}</div>`).join("")}
+    <h2>Experiencia docente</h2>
+    <div class="item"><div class="row"><b>Profesor de NTICx y Lenguajes Tecnológicos</b><span>${esc(P.docenciaPeriodo)}</span></div>
+      <ul>${P.docenciaActual.map((d) => `<li>${esc(d.materia)} — ${esc(d.escuela)} (${esc(d.lugar)}) · ${esc(d.cursos)}</li>`).join("")}</ul></div>
+    ${P.proyectos.filter((p) => p.tipo === "Proyecto educativo").map((p) => `<div class="item"><div class="row"><b>Creador y docente — ${esc(p.nombre)}</b><span>2026 – actualidad</span></div><p>${esc(p.que)}</p></div>`).join("")}
+    <h2>Experiencia profesional</h2>${exp(P.experiencia)}
+    <h2>Formación</h2>${P.formacion.map((f) => `<div class="item"><div class="row"><b>${esc(f.t)}</b><span>${esc(P.estadosFormacion[f.estado])}${f.a ? ` · ${esc(f.a)}` : ""}</span></div>${f.i ? `<div class="place">${esc(f.i)}</div>` : ""}</div>`).join("")}
   </section>
   <aside>
     <h2>Áreas</h2><ul class="chips">${P.areas.map((a) => `<li>${esc(a.t)}</li>`).join("")}</ul>
-    <h2>Niveles</h2><p class="chips">${P.niveles.map(esc).join(" · ")}</p><p class="chips" style="margin-top:4px">${esc(P.habilitacion)}</p>
+    <h2>Niveles</h2><p class="chips">${P.niveles.map(esc).join(" · ")}</p>
+    <h2>Credenciales</h2>${P.credenciales.map((x) => `<p class="chips">${esc(x.t)} — ${esc(x.d)}</p>`).join("")}
     ${P.competencias.map((g) => `<h2>Competencias ${esc(g.t.toLowerCase())}</h2><p class="chips">${g.items.map(esc).join(" · ")}</p>`).join("")}
     <h2>Tecnologías</h2>${P.tecnologias.map((g) => `<p class="chips"><span class="k">${esc(g.t)}:</span> ${g.items.map(esc).join(", ")}</p>`).join("")}
     <h2>Idiomas</h2><p class="chips">${P.idiomas.map((l) => `${esc(l.t)} — ${esc(l.n)}`).join("<br>")}</p>
