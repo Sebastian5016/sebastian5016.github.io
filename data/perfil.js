@@ -9,13 +9,14 @@
    ========================================================================== */
 window.WF = window.WF || {};
 WF.perfil = {
-  nombre: "Walter Sebastián Fernández",
+  marca: "Sebastián Fernández",          // nombre profesional: marca visible del portfolio
+  nombre: "Walter Sebastián Fernández",   // nombre formal: CV y datos administrativos
   titulo: "Profesor de Informática | NTICx | Tecnología Educativa",
   propuesta: "Experiencia profesional, formación tecnológica y docencia aplicadas a la educación.",
   bajada: "Doy clases de NTICx y Lenguajes Tecnológicos en escuelas secundarias de La Matanza. Integro programación, pensamiento lógico, robótica e IA en propuestas donde los estudiantes aprenden haciendo.",
   ubicacion: "Ramos Mejía, La Matanza · Buenos Aires",
   foto: "assets/img/walter.jpg",
-  fotoAlt: "Retrato de Walter Sebastián Fernández, sonriendo, con camisa celeste y suéter oscuro.",
+  fotoAlt: "Retrato de Sebastián Fernández, sonriendo, con camisa celeste y suéter oscuro.",
   cv: "descargas/cv/CV-Walter-Sebastian-Fernandez.pdf",
 
   // Una trayectoria diferente (bloque editorial, sin estadísticas)
@@ -62,10 +63,11 @@ WF.perfil = {
   // Áreas
   areas: [
     { icono: "monitor", t: "Informática", d: "Competencias digitales, sistemas y herramientas informáticas." },
-    { icono: "code", t: "Programación", d: "Python, JavaScript, C/C++, lógica y resolución de problemas." },
     { icono: "globe", t: "NTICx", d: "Tecnología, ciudadanía digital, pensamiento crítico y cultura digital." },
-    { icono: "cpu", t: "Robótica educativa", d: "Proyectos con Arduino, electrónica aplicada, programación y resolución de problemas." },
-    { icono: "spark", t: "Inteligencia artificial", d: "Uso educativo responsable, herramientas de IA y alfabetización en IA." },
+    { icono: "code", t: "Programación", d: "Python, JavaScript, C/C++, lógica y resolución de problemas." },
+    { icono: "layers", t: "Tecnología educativa", d: "Plataformas, recursos digitales y herramientas para enseñar y aprender." },
+    { icono: "cpu", t: "Robótica educativa", d: "Arduino, programación, electrónica aplicada y proyectos tecnológicos." },
+    { icono: "spark", t: "Inteligencia artificial", d: "Uso educativo responsable, alfabetización en IA y verificación de información." },
     { icono: "shield", t: "Seguridad digital", d: "Ciberseguridad, buenas prácticas, privacidad y ciudadanía digital." },
   ],
   niveles: ["Secundaria", "Educación Técnico-Profesional", "Formación de adultos"],
@@ -75,7 +77,7 @@ WF.perfil = {
     { tipo: "Actividad de programación", t: "Calculadora en Python, paso a paso", imagen: "assets/img/evidencias/proyecto-codigo.jpg", d: "Un problema concreto que se resuelve con funciones, validación de datos y manejo de errores.", u: "proyecto.html?id=calculadora-python", destacada: true },
     { tipo: "Robótica educativa", t: "Semáforo con Arduino", imagen: "assets/img/evidencias/arduino.jpg", d: "Circuito, pines digitales y programación: la tecnología sale de la pantalla.", u: "proyecto.html?id=semaforo-arduino", destacada: true },
     { tipo: "Material didáctico", t: "Apunte de programación", imagen: "assets/img/evidencias/apunte.jpg", d: "Objetivos, explicación, ejemplos y actividad final.", u: "apuntes/introduccion-programacion.html" },
-    { tipo: "Producción en clase", t: "Verificador de contraseñas", imagen: "assets/img/evidencias/app-contrasenas.jpg", d: "Programación web aplicada a la seguridad digital.", u: "descargas/proyectos/contrasenas/index.html" },
+    { tipo: "Proyecto didáctico", t: "Verificador de contraseñas", imagen: "assets/img/evidencias/app-contrasenas.jpg", d: "Programación web aplicada a la seguridad digital.", u: "descargas/proyectos/contrasenas/index.html" },
     { tipo: "Recurso digital", t: "Ruta de aprendizaje", imagen: "assets/img/evidencias/ruta.jpg", d: "Niveles con progreso, para avanzar a ritmo propio.", u: "ruta.html?id=intro-programacion" },
     { tipo: "IA en el aula", t: "Constructor de prompts", imagen: "assets/img/evidencias/ia-prompts.jpg", d: "Formular buenas preguntas y verificar las respuestas.", u: "ia.html#prompts" },
   ],

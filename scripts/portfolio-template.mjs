@@ -57,7 +57,7 @@ export function render(WF, root) {
   const cvKb = cvOk ? Math.round(statSync(join(root, P.cv)).size / 1024) : 0;
   const cvBtn = (cls = "b b--main") => (cvOk ? `<a class="${cls}" href="${esc(P.cv)}" download>Descargar CV ${icon("down")}</a>` : "");
   const mailto = c.email ? `mailto:${c.email}?subject=${encodeURIComponent("Contacto desde su portfolio docente")}` : "";
-  const wa = r.whatsapp ? `https://wa.me/${r.whatsapp}?text=${encodeURIComponent("Hola Walter, te escribo por tu portfolio docente.")}` : "";
+  const wa = r.whatsapp ? `https://wa.me/${r.whatsapp}?text=${encodeURIComponent("Hola Sebastián, te escribo por tu portfolio docente.")}` : "";
   const link = (l, cls = "lnk") => `<a class="${cls}" href="${esc(l.u)}"${ext(l.u)}>${esc(l.t)} ${icon(/^https?:/.test(l.u) ? "out" : "arrow")}</a>`;
   const navHref = (id) => (id.includes(".html") ? id : `#${id}`);
   const spy = (id) => (id.includes(".html") ? "" : ` data-spy="${id}"`);
@@ -67,9 +67,8 @@ export function render(WF, root) {
 <a class="skip" href="#contenido">Saltar al contenido</a>
 <header class="top" id="top">
   <div class="wrap top__in">
-    <a class="brand" href="#inicio" aria-label="${esc(P.nombre)}, inicio del portfolio">
-      <span class="brand__mark" aria-hidden="true">WF</span>
-      <span class="brand__name">Walter S. Fernández<small>Profesor de Informática · NTICx</small></span>
+    <a class="brand" href="#inicio" aria-label="${esc(P.marca)}, inicio del portfolio">
+      <span class="brand__name">${esc(P.marca)}<small>${esc(P.titulo.replace(/\s*\|\s*/g, " · "))}</small></span>
     </a>
     <nav class="nav" aria-label="Secciones del portfolio">
       <ul>${NAV.slice(0, 7).map(([id, t]) => `<li><a href="${navHref(id)}"${spy(id)}>${t}</a></li>`).join("")}</ul>
@@ -89,7 +88,7 @@ export function render(WF, root) {
   <div class="wrap hero__grid">
     <div class="hero__text">
       <img class="hero__avatar" src="assets/img/walter-sm.jpg" alt="" width="88" height="88">
-      <h1 id="hero-t" data-in style="--d:0">${esc(P.nombre)}</h1>
+      <h1 id="hero-t" data-in style="--d:0">${esc(P.marca)}</h1>
       <p class="hero__title" data-in style="--d:1">${P.titulo.split("|").map((x) => `<span>${esc(x.trim())}</span>`).join("")}</p>
       <p class="hero__lead" data-in style="--d:2">${esc(P.propuesta)}</p>
       <p class="hero__sub" data-in style="--d:3">${esc(P.bajada)}</p>
@@ -246,7 +245,7 @@ export function render(WF, root) {
         <h2 class="h2" id="cv-t">Mi CV</h2>
         <p class="intro">Para conocer mi trayectoria profesional y formación completa, podés descargar mi CV.</p>
         <div class="btns" style="margin-top:28px">${cvBtn()}</div>
-        ${cvOk ? `<p class="cv__meta">${icon("file")}PDF · ${cvKb} KB · 1 página A4</p>` : ""}
+        ${cvOk ? `<p class="cv__meta">${icon("file")}${esc(P.nombre)} · PDF · ${cvKb} KB · 1 página A4</p>` : ""}
       </div>
     </div>
   </div>
@@ -275,7 +274,7 @@ export function render(WF, root) {
   const footer = `
 <footer class="foot">
   <div class="wrap foot__in">
-    <span>© ${new Date().getFullYear()} ${esc(P.nombre)} · ${esc(P.titulo.replace(/\|/g, "·"))}</span>
+    <span>© ${new Date().getFullYear()} ${esc(P.marca)} · ${esc(P.titulo.replace(/\|/g, "·"))}</span>
     <nav aria-label="Enlaces del pie"><a href="index.html">Plataforma educativa</a>${r.github ? `<a href="${esc(r.github)}"${ext(r.github)}>GitHub</a>` : ""}<a href="privacidad.html">Privacidad</a><a href="#inicio">Volver arriba</a></nav>
   </div>
 </footer>`;

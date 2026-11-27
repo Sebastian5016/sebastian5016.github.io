@@ -21,14 +21,15 @@ run("manifest.mjs");
 const sitio = readFileSync(join(root, "data/sitio.js"), "utf8");
 const BASE = (sitio.match(/url:\s*"([^"]+)"/) || [])[1] || "/";
 const UPDATED = (sitio.match(/actualizado:\s*"([^"]+)"/) || [])[1] || new Date().toISOString().slice(0, 10);
-const NAME = "Walter Sebastián Fernández";
+const NAME = "Sebastián Fernández";
+const FORMAL = "Walter Sebastián Fernández";
 const KEYWORDS = "profesor de informática, profesor de tecnología, docente de informática, programación, educación tecnológica, informática educativa, educación digital, IA educativa, materiales de informática, recursos para estudiantes, portfolio docente";
 const DATA = ["sitio", "taxonomia", "descargas", "proyectos", "lenguajes", "materiales", "rutas", "blog", "alumnos-proyectos", "secciones"];
 
 const PERSON = {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "Person", "@id": BASE + "#walter", name: NAME, jobTitle: "Profesor de Informática", image: BASE + "assets/img/walter.jpg", address: { "@type": "PostalAddress", addressLocality: "Ramos Mejía", addressRegion: "Buenos Aires", addressCountry: "AR" }, alumniOf: [{ "@type": "EducationalOrganization", name: "ISFDyT N.º 46" }, { "@type": "CollegeOrUniversity", name: "Universidad Nacional del Nordeste" }, { "@type": "CollegeOrUniversity", name: "Universidad Tecnológica Nacional" }], url: BASE, knowsAbout: ["Informática", "Programación", "Bases de datos", "Redes", "Seguridad informática", "Inteligencia artificial", "Educación digital", "Pensamiento computacional"], sameAs: [...sitio.matchAll(/(linkedin|github|youtube):\s*"(https:[^"]+)"/g)].map((m) => m[2]) },
+    { "@type": "Person", "@id": BASE + "#walter", name: NAME, alternateName: FORMAL, jobTitle: "Profesor de Informática, NTICx y Tecnología Educativa", image: BASE + "assets/img/walter.jpg", address: { "@type": "PostalAddress", addressLocality: "Ramos Mejía", addressRegion: "Buenos Aires", addressCountry: "AR" }, alumniOf: [{ "@type": "EducationalOrganization", name: "ISFDyT N.º 46" }, { "@type": "CollegeOrUniversity", name: "Universidad Nacional del Nordeste" }, { "@type": "CollegeOrUniversity", name: "Universidad Tecnológica Nacional" }], url: BASE, knowsAbout: ["Informática", "NTICx", "Lenguajes Tecnológicos", "Tecnología educativa", "Robótica educativa", "Arduino", "Programación", "Bases de datos", "Redes", "Seguridad informática", "Inteligencia artificial", "Educación digital", "Pensamiento computacional"], sameAs: [...sitio.matchAll(/(linkedin|github|youtube):\s*"(https:[^"]+)"/g)].map((m) => m[2]) },
     { "@type": "WebSite", "@id": BASE + "#web", url: BASE, name: `${NAME} · Profesor de Informática`, inLanguage: "es", publisher: { "@id": BASE + "#walter" } },
   ],
 };
