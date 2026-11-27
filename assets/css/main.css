@@ -724,7 +724,7 @@ figcaption { font-size: 0.74rem; color: var(--ink-3); margin-top: 10px; font-fam
 .lang-card .lang-badge { width: 52px; height: 52px; border-radius: 14px; font-size: 0.92rem; margin-bottom: 18px; }
 .lang-head { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
 .lang-head .lang-badge { width: 76px; height: 76px; border-radius: 20px; font-size: 1.3rem; flex-shrink: 0; }
-.noscript { padding: 16px; background: var(--warn-soft); color: var(--warn); text-align: center; font-size: var(--fs-sm); }
+.noscript { display: block; padding: 14px 16px; border-bottom: 1px solid var(--line); text-align: center; font-size: var(--fs-sm); color: var(--ink-2); }
 .loading { padding: 80px 24px; text-align: center; color: var(--ink-3); font-family: var(--font-mono); font-size: var(--fs-sm); }
 
 /* ---------- 27. Animaciones de entrada (las activa fx.js) ---------- */

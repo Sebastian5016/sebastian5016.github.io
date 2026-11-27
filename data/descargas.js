@@ -73,6 +73,14 @@ WF.descargas = {
   "bytes": 123284,
   "actualizado": "2026-11-26"
  },
+ "descargas/cv/CV-Walter-Sebastian-Fernandez.pdf": {
+  "ruta": "descargas/cv/CV-Walter-Sebastian-Fernandez.pdf",
+  "nombre": "CV-Walter-Sebastian-Fernandez.pdf",
+  "ext": "pdf",
+  "tipo": "PDF",
+  "bytes": 115165,
+  "actualizado": "2026-11-27"
+ },
  "descargas/docentes/autorizacion-publicacion.txt": {
   "ruta": "descargas/docentes/autorizacion-publicacion.txt",
   "nombre": "autorizacion-publicacion.txt",

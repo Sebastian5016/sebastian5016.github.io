@@ -37,6 +37,7 @@ Ver **[docs/GUIA-CONTENIDOS.md](docs/GUIA-CONTENIDOS.md)**. Arquitectura complet
 ```bash
 node scripts/build.mjs        # apuntes + manifiesto de descargas + páginas + sitemap
 node scripts/build-pdfs.mjs   # regenera los PDF de los apuntes
+node scripts/build-cv.mjs     # regenera el CV público en PDF (sin DNI ni domicilio) desde data/perfil.js
 ```
 
 ## Estructura

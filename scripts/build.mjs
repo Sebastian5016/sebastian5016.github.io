@@ -49,7 +49,7 @@ ${m.sitemap === false ? '<meta name="robots" content="index, follow">\n' : ""}<l
 <meta property="og:title" content="${m.title}">
 <meta property="og:description" content="${m.desc}">
 <meta property="og:url" content="${BASE}${file === "index.html" ? "" : file}">
-<meta property="og:image" content="${BASE}assets/img/og.png">
+<meta property="og:image" content="${BASE}${m.og || "assets/img/og.png"}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#07040E">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
@@ -75,7 +75,7 @@ const PDATA = loadData(root);
 const body = (m, content) => `<body data-page="${m.page}">
 <a class="skip-link" href="#main">Saltar al contenido</a>
 <div id="site-header"></div>
-<noscript><div class="noscript">Esta plataforma usa JavaScript para mostrar proyectos, materiales y búsquedas. Activalo para ver todo el contenido.</div></noscript>
+<noscript><nav class="noscript" aria-label="Navegación básica"><a href="index.html">Inicio</a> · <a href="portfolio.html">Portfolio docente</a> · <a href="alumnos.html">Recursos para alumnos</a> · <a href="contacto.html">Contacto</a></nav></noscript>
 <main id="main" tabindex="-1">
 ${content}
 </main>
@@ -96,7 +96,7 @@ for (const f of readdirSync(join(root, "src/pages")).filter((f) => f.endsWith(".
   const m = JSON.parse(mm[1]);
   const content = raw.slice(mm[0].length).trim();
   if (m.layout === "portfolio") {
-    const { html, missingDirect } = renderPortfolio(PDATA);
+    const { html, missingDirect } = renderPortfolio(PDATA, root);
     writeFileSync(join(root, f), head(m, f) + "\n" + portfolioBody(m, html));
     if (missingDirect) console.warn("⚠ Portfolio: falta un canal directo (correo, WhatsApp, LinkedIn o formulario) en data/sitio.js. Solo se muestra GitHub.");
   } else writeFileSync(join(root, f), head(m, f) + "\n" + body(m, content));
