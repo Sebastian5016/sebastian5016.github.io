@@ -78,7 +78,7 @@ WF.descargas = {
   "nombre": "CV-Walter-Sebastian-Fernandez.pdf",
   "ext": "pdf",
   "tipo": "PDF",
-  "bytes": 116651,
+  "bytes": 114862,
   "actualizado": "2026-11-27"
  },
  "descargas/docentes/autorizacion-publicacion.txt": {

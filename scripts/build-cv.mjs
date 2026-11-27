@@ -16,7 +16,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const { perfil: P, sitio: S } = loadData(root);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const photo = "data:image/jpeg;base64," + readFileSync(join(root, "assets/img/walter-sm.jpg")).toString("base64");
-const exp = (list) => list.map((e) => `<div class="item"><div class="row"><b>${esc(e.cargo)}</b><span>${esc(e.periodo)}</span></div><div class="place">${esc(e.lugar)}</div><p>${esc(e.texto)}</p></div>`).join("");
+const exp = (list) => list.map((e) => `<div class="item"><div class="row"><b>${esc(e.cargo)}</b><span>${esc(e.periodo)}</span></div><div class="place">${esc(e.lugar)}</div>${e.aporta ? `<p>Aporta: ${esc(e.aporta)}</p>` : ""}</div>`).join("");
 
 const html = `<!doctype html><html lang="es"><head><meta charset="utf-8"><title>CV — ${esc(P.nombre)}</title>
 <style>
@@ -53,10 +53,10 @@ footer { margin-top: 12px; font-size: 7.8pt; color: #8a849f; text-align: center;
   <section>
     <h2>Perfil</h2><p class="lead">${esc(P.bajada)}</p>
     <h2>Experiencia docente</h2>
-    <div class="item"><div class="row"><b>Profesor de NTICx y Lenguajes Tecnológicos</b><span>${esc(P.docenciaPeriodo)}</span></div>
-      <ul>${P.docenciaActual.map((d) => `<li>${esc(d.materia)} — ${esc(d.escuela)} (${esc(d.lugar)}) · ${esc(d.cursos)}</li>`).join("")}</ul></div>
-    ${P.proyectos.filter((p) => p.tipo === "Proyecto educativo").map((p) => `<div class="item"><div class="row"><b>Creador y docente — ${esc(p.nombre)}</b><span>2026 – actualidad</span></div><p>${esc(p.que)}</p></div>`).join("")}
-    <h2>Experiencia profesional</h2>${exp(P.experiencia)}
+    <div class="item"><div class="row"><b>Profesor de NTICx y Lenguajes Tecnológicos</b><span>Actualidad</span></div>
+      <ul>${P.escuelas.map((d) => `<li>${esc(d.materia)} — ${esc(d.escuela)} (${esc(d.lugar)}) · ${esc(d.cursos)}</li>`).join("")}</ul></div>
+    
+    <h2>Experiencia profesional y educativa</h2>${exp(P.experiencia.filter((e) => e.periodo !== "Actualidad"))}
     <h2>Formación</h2>${P.formacion.map((f) => `<div class="item"><div class="row"><b>${esc(f.t)}</b><span>${esc(P.estadosFormacion[f.estado])}${f.a ? ` · ${esc(f.a)}` : ""}</span></div>${f.i ? `<div class="place">${esc(f.i)}</div>` : ""}</div>`).join("")}
   </section>
   <aside>

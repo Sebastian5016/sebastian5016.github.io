@@ -5,13 +5,13 @@
 <path d="M90 70V100"/><path d="M90 150V180"/><path d="M150 215H215"/><path d="M335 215H385"/><path d="M465 215H500"/><path d="M560 240V300H300V250"/><path d="M90 250V300"/>
 </g>
 <g stroke="#E9E4F8" stroke-width="1.6">
-<rect x="40" y="30" width="100" height="40" rx="20" fill="#17112B""/>
-<rect x="30" y="100" width="120" height="50" fill="#17112B""/>
+<rect x="40" y="30" width="100" height="40" rx="20" fill="#17112B"/>
+<rect x="30" y="100" width="120" height="50" fill="#17112B"/>
 <path d="M90 180L150 215L90 250L30 215Z" fill="#241B45"/>
-<path d="M230 190H340L325 240H215Z" fill="#17112B""/>
-<rect x="385" y="190" width="80" height="50" fill="#17112B""/>
-<path d="M515 190H615L600 240H500Z" fill="#17112B""/>
-<rect x="40" y="300" width="100" height="40" rx="20" fill="#17112B""/>
+<path d="M230 190H340L325 240H215Z" fill="#17112B"/>
+<rect x="385" y="190" width="80" height="50" fill="#17112B"/>
+<path d="M515 190H615L600 240H500Z" fill="#17112B"/>
+<rect x="40" y="300" width="100" height="40" rx="20" fill="#17112B"/>
 </g>
 <g fill="#E9E4F8" text-anchor="middle">
 <text x="90" y="55">Inicio</text><text x="90" y="130">Mostrar menú</text><text x="90" y="219">¿opción?</text>
